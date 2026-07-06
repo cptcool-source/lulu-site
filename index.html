@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+</style>
+</helmet>
+
+<div style="background:#221b2c; color:#f4efe9;">
+  <!-- nav -->
+  <nav style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 24px; padding:24px 52px;">
+    <span style="display:flex; align-items:center; gap:14px; white-space:nowrap;"><img src="assets/lulu-logo.png" alt="LuLu &amp; Lens" style="width:52px; height:52px; object-fit:contain;"><span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:27px; color:#f4efe9;">LuLu &amp; Lens</span></span>
+    <div style="display:flex; align-items:center; gap:28px; font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; white-space:nowrap;">
+      <span>Home</span><span>About</span><span>Portfolio</span><span>Process</span><span>Contact</span>
+    </div>
+    <span style="font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:12px 22px; border-radius:30px; white-space:nowrap;">Let's do a shoot!</span>
+  </nav>
+
+  <!-- hero -->
+  <div style="position:relative; overflow:hidden; min-height:660px; display:flex; flex-direction:column; justify-content:center;">
+    <img src="assets/lulu-painting.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 28%; filter:saturate(.85) brightness(.62) blur(2px); transform:scale(1.06);">
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(34,27,44,.55) 0%, rgba(52,40,72,.6) 50%, rgba(34,27,44,.9) 100%);"></div>
+    <div style="position:relative; padding:20px 52px 40px;">
+      <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:26px; color:#d9c8ec; margin-bottom:10px;">Every family has a story worth keeping —</div>
+      <div style="font-family:'Cormorant Garamond',serif; line-height:.9;">
+        <div style="font-weight:600; font-size:132px; letter-spacing:-.01em; color:#f4efe9;">MEMORIES</div>
+        <div style="font-style:italic; font-weight:300; font-size:96px; color:#e6d6a8; margin:-6px 0 -6px 40px;">captured</div>
+        <div style="font-weight:600; font-size:132px; letter-spacing:.01em; color:transparent; -webkit-text-stroke:1.6px #c9b8e2;">FOREVER</div>
+      </div>
+    </div>
+    <div style="position:relative; margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(233,224,242,.22); font-family:'Mulish',sans-serif;">
+      <div style="padding:18px 52px 22px;"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Speciality</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Families &amp; Couples</div></div>
+      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Sessions</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Beach · Home · Golden Hour</div></div>
+      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Based in</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Coastal California</div></div>
+      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Booking</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Now open · 2026</div></div>
+    </div>
+  </div>
+
+  <!-- intro / about -->
+  <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; padding:110px 52px; align-items:center;">
+    <div style="position:relative;">
+      <img src="assets/lulu-portrait.png" alt="LuLu" style="width:100%; height:480px; object-fit:cover; object-position:center 25%; border-radius:4px;">
+      <div style="position:absolute; bottom:-22px; right:-22px; background:#e6d6a8; padding:14px 26px; border-radius:3px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; color:#3a2f18;">— LuLu</div>
+    </div>
+    <div>
+      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:26px;">(01) &nbsp;The heart behind the lens</div>
+      <p style="font-family:'Cormorant Garamond',serif; font-weight:400; font-size:38px; line-height:1.32; margin:0; color:#f0e9f5; text-wrap:pretty;">Hi, I'm LuLu. I photograph the in-between moments — the barefoot chases down the beach, the belly laughs, the quiet way you hold each other. My work is soulful, unhurried, and honest, made for families and couples who'd rather feel something than pose for it.</p>
+      <div style="display:flex; gap:44px; margin-top:44px; font-family:'Mulish',sans-serif;">
+        <div><div style="font-family:'Cormorant Garamond',serif; font-size:44px; color:#e6d6a8;">8&nbsp;yrs</div><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; margin-top:2px;">Behind the camera</div></div>
+        <div><div style="font-family:'Cormorant Garamond',serif; font-size:44px; color:#e6d6a8;">300+</div><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; margin-top:2px;">Families &amp; couples</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- services -->
+  <div style="background:#c9b8e2; color:#2f2836; padding:104px 52px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:54px;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; color:#2f2836; line-height:1;">What we make<br><span style="font-style:italic; color:#6f5c92;">together</span></h2>
+      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#6f5c92;">(02) &nbsp;Sessions</div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(47,40,54,.18); border:1px solid rgba(47,40,54,.18);">
+      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">01</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Beach Sessions</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">Golden light, salt air, and room to run. Perfect for growing families.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
+      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">02</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Family Portraits</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">At home or outdoors — relaxed, tender, and truly yours.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
+      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">03</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Engagements</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">The start of your story, captured with all its butterflies.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
+      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">04</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Golden Hour</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">That last hour of light. Dreamy, warm, and utterly you.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
+    </div>
+  </div>
+
+  <!-- portfolio -->
+  <div style="padding:104px 52px; background:#221b2c;">
+    <div style="text-align:center; margin-bottom:52px;">
+      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:16px;">(03) &nbsp;Portfolio</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; color:#f4efe9;">A look through the <span style="font-style:italic; color:#c9b8e2;">lens</span></h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:200px; gap:14px;">
+      <div style="grid-column:span 3; grid-row:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-1" shape="rounded" radius="4" placeholder="Beach · family — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+      <div style="grid-column:span 3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-2" shape="rounded" radius="4" placeholder="Engagement — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+      <div style="grid-column:span 3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-3" shape="rounded" radius="4" placeholder="Golden hour — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-4" shape="rounded" radius="4" placeholder="Portrait — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-5" shape="rounded" radius="4" placeholder="Candid — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-6" shape="rounded" radius="4" placeholder="Detail — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
+    </div>
+  </div>
+
+  <!-- process -->
+  <div style="background:#efe6f6; color:#2f2836; padding:104px 52px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:60px;">
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; line-height:1;">From hello to<br><span style="font-style:italic; color:#6f5c92;">your gallery</span></h2>
+      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8a7ba0;">(04) &nbsp;The process</div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:40px;">
+      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">01</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">Say hello</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">Tell me about your people and the moment you want to remember.</p></div>
+      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">02</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">The plan</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">We choose a location, a time of light, and what to wear together.</p></div>
+      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">03</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">The shoot</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">Relaxed and playful. You just be together — I'll catch the rest.</p></div>
+      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">04</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">Your gallery</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">A hand-edited gallery of keepsakes, delivered within two weeks.</p></div>
+    </div>
+  </div>
+
+  <!-- contact CTA -->
+  <div style="position:relative; overflow:hidden; padding:110px 52px 130px; text-align:center; background:#2f2836;">
+    <img src="assets/lulu-logo.png" alt="" style="width:118px; height:118px; object-fit:contain; padding:12px; background:#efe6f6; border-radius:50%; margin:0 auto 30px; display:block; box-shadow:0 18px 50px -18px rgba(0,0,0,.6);">
+    <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:22px;">(05) &nbsp;Let's begin</div>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:88px; line-height:1.02; margin:0 0 14px; color:#f4efe9;">Your people, your light,<br><span style="font-style:italic; color:#c9b8e2;">your season.</span></h2>
+    <p style="font-family:'Mulish',sans-serif; font-size:15px; color:#b9abc9; max-width:520px; margin:0 auto 40px; line-height:1.6;">Sessions book a few months out — reach out and let's find your date.</p>
+    <span style="display:inline-block; font-family:'Mulish',sans-serif; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:20px 44px; border-radius:40px;">Let's do a shoot!</span>
+  </div>
+
+  <!-- footer -->
+  <div style="background:#1a1422; color:#b9abc9; padding:44px 52px; display:flex; align-items:center; justify-content:space-between; font-family:'Mulish',sans-serif; font-size:12px;">
+    <span style="display:flex; align-items:center; gap:12px;"><img src="assets/lulu-logo.png" alt="" style="width:44px; height:44px; object-fit:contain;"><span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:#f0e9f5;">LuLu &amp; Lens</span></span>
+    <div style="display:flex; gap:28px; letter-spacing:.12em; text-transform:uppercase;"><span>hello@luluandlens.com</span><span>Instagram</span><span>Pinterest</span></div>
+    <span style="opacity:.6;">© 2026 · Coastal California</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
