@@ -4,6 +4,128 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<style id="lz-styles">
+  /* ===== LuLu & Lens — hero rebuild + booking modal (lz- namespace) ===== */
+
+  /* Hero background — site colours, no photograph */
+  .lz-hero-bg{position:absolute;inset:0;background:
+    radial-gradient(140% 120% at 82% -20%, #574670 0%, #3d3156 34%, #2a2138 64%, #221b2c 100%);}
+  .lz-godrays{position:absolute;inset:-25%;pointer-events:none;mix-blend-mode:screen;
+    background:conic-gradient(from 198deg at 84% -6%,
+      transparent 4deg, rgba(230,214,168,.22) 9deg, transparent 14deg,
+      rgba(201,184,226,.16) 21deg, transparent 28deg,
+      rgba(230,214,168,.14) 37deg, transparent 45deg,
+      rgba(217,200,236,.12) 54deg, transparent 63deg,
+      rgba(230,214,168,.10) 72deg, transparent 80deg);
+    -webkit-mask-image:radial-gradient(115% 85% at 84% -6%,#000 0%,rgba(0,0,0,.55) 46%,transparent 80%);
+            mask-image:radial-gradient(115% 85% at 84% -6%,#000 0%,rgba(0,0,0,.55) 46%,transparent 80%);
+    animation:lz-drift 16s ease-in-out infinite alternate;}
+  .lz-bloom{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(26% 34% at 84% -2%, rgba(230,214,168,.34), transparent 70%);}
+  .lz-hero-fade{position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg, transparent 52%, rgba(26,20,34,.5) 100%);}
+  @keyframes lz-drift{0%{transform:rotate(-5deg) translateY(-1%);opacity:.82}100%{transform:rotate(5deg) translateY(1%);opacity:1}}
+
+  /* CTA button — the morph trigger */
+  .lz-cta{position:relative;display:inline-flex;align-items:center;gap:12px;font-family:'Mulish',sans-serif;
+    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#221b2c;background:#e6d6a8;
+    border:none;cursor:pointer;padding:19px 38px;border-radius:40px;white-space:nowrap;
+    box-shadow:0 22px 50px -22px rgba(230,214,168,.7);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s;}
+  .lz-cta:hover{transform:translateY(-2px);background:#efdfb2;box-shadow:0 28px 62px -20px rgba(230,214,168,.85);}
+  .lz-cta svg{width:17px;height:17px;transition:transform .3s;}
+  .lz-cta:hover svg{transform:translateX(4px);}
+  .lz-book-open{border:none;cursor:pointer;font:inherit;}
+
+  /* Booking modal */
+  .lz-modal{position:fixed;inset:0;z-index:1000;display:none;}
+  .lz-modal.is-open{display:block;}
+  .lz-scrim{position:absolute;inset:0;background:rgba(18,13,26,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s ease;}
+  .lz-modal.is-open .lz-scrim{opacity:1;}
+  .lz-card{position:absolute;inset:0;overflow:hidden;background:#2a2140;box-shadow:0 50px 130px -30px rgba(0,0,0,.75);will-change:transform,border-radius;}
+  @media(min-width:640px){.lz-card{inset:22px;border-radius:24px;}}
+  .lz-mesh{position:absolute;inset:0;pointer-events:none;background:
+    radial-gradient(55% 75% at 14% 18%, #4c3b6c 0%, transparent 60%),
+    radial-gradient(48% 66% at 86% 12%, #6f5c92 0%, transparent 55%),
+    radial-gradient(72% 92% at 82% 92%, #3a2f56 0%, transparent 60%),
+    radial-gradient(60% 72% at 8% 88%, #241c39 0%, transparent 60%), #2a2140;
+    background-size:200% 200%,200% 200%,200% 200%,200% 200%,100% 100%;
+    animation:lz-mesh 20s ease-in-out infinite alternate;}
+  @keyframes lz-mesh{0%{background-position:0% 0%,100% 0%,100% 100%,0% 100%,0 0}100%{background-position:24% 28%,72% 22%,84% 70%,18% 82%,0 0}}
+  .lz-mesh-rays{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;
+    background:conic-gradient(from 220deg at 90% -4%, transparent 6deg, rgba(230,214,168,.16) 12deg, transparent 20deg, rgba(201,184,226,.12) 32deg, transparent 44deg);}
+  .lz-close{position:absolute;top:18px;right:18px;z-index:6;width:44px;height:44px;border:none;border-radius:50%;
+    background:rgba(244,239,233,.12);color:#f4efe9;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .25s;}
+  .lz-close:hover{background:rgba(244,239,233,.24);}
+  .lz-close svg{width:20px;height:20px;}
+
+  .lz-inner{position:relative;z-index:2;height:100%;width:100%;display:flex;flex-direction:column;overflow-y:auto;
+    opacity:0;transition:opacity .4s ease .12s;}
+  .lz-modal.is-open .lz-inner{opacity:1;}
+  @media(min-width:1024px){.lz-inner{flex-direction:row;overflow:hidden;max-width:1220px;margin:0 auto;}}
+  .lz-left{flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:56px 34px 20px;color:#f4efe9;}
+  @media(min-width:1024px){.lz-left{padding:72px 56px;}}
+  .lz-right{flex:1;display:flex;align-items:center;justify-content:center;padding:12px 22px 44px;}
+  @media(min-width:1024px){.lz-right{padding:40px 56px;}}
+
+  .lz-eyebrow{font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#e6d6a8;}
+  .lz-h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:46px;line-height:1.05;margin:10px 0 0;color:#f4efe9;}
+  .lz-h2 em{font-style:italic;color:#c9b8e2;}
+  .lz-lead{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.4;color:#e7ddf1;margin:0;max-width:30ch;}
+  .lz-points{display:flex;flex-direction:column;gap:16px;font-family:'Mulish',sans-serif;}
+  .lz-point{display:flex;gap:14px;align-items:flex-start;}
+  .lz-point i{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#e6d6a8;margin-top:7px;}
+  .lz-point b{display:block;font-size:14px;font-weight:700;color:#f4efe9;letter-spacing:.02em;}
+  .lz-point span{font-size:13px;line-height:1.55;color:#c3b6d4;}
+  .lz-stats{display:flex;gap:40px;margin-top:2px;font-family:'Mulish',sans-serif;}
+  .lz-stat b{font-family:'Cormorant Garamond',serif;font-size:40px;color:#e6d6a8;display:block;line-height:1;}
+  .lz-stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b9abc9;margin-top:6px;display:block;}
+
+  .lz-form-card{width:100%;max-width:440px;background:rgba(244,239,233,.07);border:1px solid rgba(244,239,233,.16);
+    border-radius:18px;padding:26px 26px 28px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.6);}
+  .lz-form-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;margin:0 0 4px;color:#f4efe9;}
+  .lz-form-card p.sub{font-family:'Mulish',sans-serif;font-size:13px;color:#c3b6d4;margin:0 0 20px;}
+  .lz-field{margin-bottom:14px;}
+  .lz-field label{display:block;font-family:'Mulish',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c9b8e2;margin-bottom:6px;}
+  .lz-field input,.lz-field select,.lz-field textarea{width:100%;box-sizing:border-box;font-family:'Mulish',sans-serif;font-size:14px;color:#f4efe9;
+    background:rgba(26,20,34,.5);border:1px solid rgba(201,184,226,.22);border-radius:10px;padding:12px 14px;outline:none;
+    transition:border-color .2s,box-shadow .2s;}
+  .lz-field input::placeholder,.lz-field textarea::placeholder{color:rgba(244,239,233,.32);}
+  .lz-field input:focus,.lz-field select:focus,.lz-field textarea:focus{border-color:#e6d6a8;box-shadow:0 0 0 3px rgba(230,214,168,.18);}
+  .lz-field textarea{resize:none;}
+  .lz-field select{appearance:none;-webkit-appearance:none;cursor:pointer;}
+  .lz-field select option{background:#2a2140;color:#f4efe9;}
+  .lz-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .lz-submit{width:100%;margin-top:8px;font-family:'Mulish',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:#221b2c;background:#e6d6a8;border:none;border-radius:12px;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:background .2s,transform .2s;}
+  .lz-submit:hover{background:#efdfb2;transform:translateY(-1px);}
+  .lz-submit:disabled{opacity:.65;cursor:default;transform:none;}
+  .lz-fine{font-family:'Mulish',sans-serif;font-size:11px;text-align:center;color:#a99cbd;margin:14px 0 0;}
+  .lz-fine a{color:#e6d6a8;text-decoration:none;}
+  .lz-spin{width:15px;height:15px;border:2px solid rgba(34,27,44,.35);border-top-color:#221b2c;border-radius:50%;animation:lz-spin .7s linear infinite;}
+  @keyframes lz-spin{to{transform:rotate(360deg)}}
+  .lz-success{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:26px 10px;}
+  .lz-success .ico{width:66px;height:66px;border-radius:50%;background:#e6d6a8;color:#221b2c;display:flex;align-items:center;justify-content:center;}
+  .lz-success .ico svg{width:32px;height:32px;}
+  .lz-success h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:0;color:#f4efe9;}
+  .lz-success p{font-family:'Mulish',sans-serif;font-size:14px;line-height:1.55;color:#c3b6d4;margin:0;max-width:34ch;}
+  .lz-success button{margin-top:6px;font-family:'Mulish',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#f4efe9;background:rgba(244,239,233,.14);border:none;border-radius:10px;padding:12px 26px;cursor:pointer;transition:background .2s;}
+  .lz-success button:hover{background:rgba(244,239,233,.24);}
+
+  /* Responsive hero type */
+  @media(max-width:720px){
+    .lz-h1-mem{font-size:74px !important;}
+    .lz-h1-cap{font-size:52px !important;margin-left:20px !important;}
+    .lz-h1-for{font-size:74px !important;}
+    .lz-statgrid{grid-template-columns:1fr 1fr !important;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .lz-godrays,.lz-mesh{animation:none !important;}
+  }
+</style>
 </head>
 <body>
 <x-dc>
@@ -24,22 +146,25 @@
     <div style="display:flex; align-items:center; gap:28px; font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; white-space:nowrap;">
       <span>Home</span><span>About</span><span>Portfolio</span><span>Process</span><span>Contact</span>
     </div>
-    <span style="font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:12px 22px; border-radius:30px; white-space:nowrap;">Let's do a shoot!</span>
+    <button type="button" class="lz-book-open" style="font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:12px 22px; border-radius:30px; white-space:nowrap;">Let's do a shoot!</button>
   </nav>
 
   <!-- hero -->
   <div style="position:relative; overflow:hidden; min-height:660px; display:flex; flex-direction:column; justify-content:center;">
-    <img src="assets/lulu-painting.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 28%; filter:saturate(.85) brightness(.62) blur(2px); transform:scale(1.06);">
-    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(34,27,44,.55) 0%, rgba(52,40,72,.6) 50%, rgba(34,27,44,.9) 100%);"></div>
+    <div class="lz-hero-bg"></div>
+    <div class="lz-godrays"></div>
+    <div class="lz-bloom"></div>
+    <div class="lz-hero-fade"></div>
     <div style="position:relative; padding:20px 52px 40px;">
       <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:26px; color:#d9c8ec; margin-bottom:10px;">Every family has a story worth keeping —</div>
       <div style="font-family:'Cormorant Garamond',serif; line-height:.9;">
-        <div style="font-weight:600; font-size:132px; letter-spacing:-.01em; color:#f4efe9;">MEMORIES</div>
-        <div style="font-style:italic; font-weight:300; font-size:96px; color:#e6d6a8; margin:-6px 0 -6px 40px;">captured</div>
-        <div style="font-weight:600; font-size:132px; letter-spacing:.01em; color:transparent; -webkit-text-stroke:1.6px #c9b8e2;">FOREVER</div>
+        <div class="lz-h1-mem" style="font-weight:600; font-size:132px; letter-spacing:-.01em; color:#f4efe9;">MEMORIES</div>
+        <div class="lz-h1-cap" style="font-style:italic; font-weight:300; font-size:96px; color:#e6d6a8; margin:-6px 0 -6px 40px;">captured</div>
+        <div class="lz-h1-for" style="font-weight:600; font-size:132px; letter-spacing:.01em; color:transparent; -webkit-text-stroke:1.6px #c9b8e2;">FOREVER</div>
       </div>
+      <button type="button" class="lz-cta lz-book-open" style="margin-top:38px;">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
-    <div style="position:relative; margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(233,224,242,.22); font-family:'Mulish',sans-serif;">
+    <div class="lz-statgrid" style="position:relative; margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(233,224,242,.22); font-family:'Mulish',sans-serif;">
       <div style="padding:18px 52px 22px;"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Speciality</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Families &amp; Couples</div></div>
       <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Sessions</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Beach · Home · Golden Hour</div></div>
       <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Based in</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Coastal California</div></div>
@@ -113,7 +238,7 @@
     <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:22px;">(05) &nbsp;Let's begin</div>
     <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:88px; line-height:1.02; margin:0 0 14px; color:#f4efe9;">Your people, your light,<br><span style="font-style:italic; color:#c9b8e2;">your season.</span></h2>
     <p style="font-family:'Mulish',sans-serif; font-size:15px; color:#b9abc9; max-width:520px; margin:0 auto 40px; line-height:1.6;">Sessions book a few months out — reach out and let's find your date.</p>
-    <span style="display:inline-block; font-family:'Mulish',sans-serif; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:20px 44px; border-radius:40px;">Let's do a shoot!</span>
+    <button type="button" class="lz-book-open" style="display:inline-flex; align-items:center; gap:12px; font-family:'Mulish',sans-serif; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:20px 44px; border-radius:40px; cursor:pointer; box-shadow:0 22px 50px -22px rgba(230,214,168,.7);">Let's do a shoot! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
 
   <!-- footer -->
@@ -124,5 +249,147 @@
   </div>
 </div>
 </x-dc>
+
+<!-- ===== Booking modal (vanilla port of the expanding-CTA hero pattern) ===== -->
+<div class="lz-modal" id="lz-modal" role="dialog" aria-modal="true" aria-label="Book a session" aria-hidden="true">
+  <div class="lz-scrim" data-lz-close></div>
+  <div class="lz-card" id="lz-card">
+    <div class="lz-mesh"></div>
+    <div class="lz-mesh-rays"></div>
+    <button type="button" class="lz-close" data-lz-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="lz-inner">
+      <!-- left: the invitation -->
+      <div class="lz-left">
+        <div>
+          <div class="lz-eyebrow">Let's begin</div>
+          <h2 class="lz-h2">Let's make something<br><em>you'll keep.</em></h2>
+        </div>
+        <p class="lz-lead">Tell me about your people and the season you're in. I photograph the in-between moments — unhurried, soulful, and honest.</p>
+        <div class="lz-points">
+          <div class="lz-point"><i></i><div><b>Beach · Home · Golden Hour</b><span>Sessions shaped around your family and your light.</span></div></div>
+          <div class="lz-point"><i></i><div><b>Delivered in two weeks</b><span>A hand-edited gallery of keepsakes, yours to hold.</span></div></div>
+        </div>
+        <div class="lz-stats">
+          <div class="lz-stat"><b>8&nbsp;yrs</b><span>Behind the camera</span></div>
+          <div class="lz-stat"><b>300+</b><span>Families &amp; couples</span></div>
+        </div>
+      </div>
+      <!-- right: the form -->
+      <div class="lz-right">
+        <div class="lz-form-card" id="lz-form-wrap">
+          <form id="lz-form" novalidate>
+            <h3>Request a session</h3>
+            <p class="sub">I'll be in touch within two days.</p>
+            <div class="lz-field"><label for="lz-name">Full name</label><input id="lz-name" name="name" type="text" placeholder="Your name" required></div>
+            <div class="lz-field"><label for="lz-email">Email</label><input id="lz-email" name="email" type="email" placeholder="you@email.com" required></div>
+            <div class="lz-row2">
+              <div class="lz-field"><label for="lz-type">Session</label>
+                <select id="lz-type" name="session">
+                  <option>Beach Session</option>
+                  <option>Family Portraits</option>
+                  <option>Engagement</option>
+                  <option>Golden Hour</option>
+                </select>
+              </div>
+              <div class="lz-field"><label for="lz-when">Ideal month</label><input id="lz-when" name="when" type="text" placeholder="e.g. June"></div>
+            </div>
+            <div class="lz-field"><label for="lz-msg">A few words</label><textarea id="lz-msg" name="message" rows="3" placeholder="Tell me about your family…"></textarea></div>
+            <button type="submit" class="lz-submit" id="lz-submit">Send inquiry</button>
+            <p class="lz-fine">Prefer email? <a href="mailto:hello@luluandlens.com">hello@luluandlens.com</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal = document.getElementById('lz-modal');
+  var card  = document.getElementById('lz-card');
+  var wrap  = document.getElementById('lz-form-wrap');
+  var FORM_HTML = wrap ? wrap.innerHTML : '';
+  var lastTrigger = null;
+
+  function morph(fromOpen){
+    if(!lastTrigger || !card.animate) return null;
+    var t = lastTrigger.getBoundingClientRect();
+    var f = card.getBoundingClientRect();
+    if(!f.width || !f.height) return null;
+    var sx = Math.max(t.width / f.width, 0.05);
+    var sy = Math.max(t.height / f.height, 0.05);
+    var tx = (t.left + t.width/2) - (f.left + f.width/2);
+    var ty = (t.top + t.height/2) - (f.top + f.height/2);
+    var round = (window.innerWidth >= 640) ? '24px' : '0px';
+    var small = {transform:'translate('+tx+'px,'+ty+'px) scale('+sx+','+sy+')', borderRadius:'40px', opacity:0.3};
+    var full  = {transform:'none', borderRadius:round, opacity:1};
+    return fromOpen
+      ? card.animate([small, full], {duration:520, easing:'cubic-bezier(.2,.8,.2,1)'})
+      : card.animate([full, small], {duration:360, easing:'cubic-bezier(.4,0,.2,1)'});
+  }
+
+  function open(trigger){
+    lastTrigger = trigger || null;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    morph(true);
+  }
+
+  function close(){
+    document.body.style.overflow = '';
+    modal.setAttribute('aria-hidden','true');
+    var finish = function(){ modal.classList.remove('is-open'); resetForm(); };
+    var anim = morph(false);
+    if(anim){ anim.onfinish = finish; anim.oncancel = finish; }
+    else finish();
+  }
+
+  function resetForm(){
+    if(wrap && wrap.getAttribute('data-state') === 'success'){
+      wrap.setAttribute('data-state','');
+      wrap.innerHTML = FORM_HTML;
+      bindForm();
+    }
+  }
+
+  function bindForm(){
+    var form = document.getElementById('lz-form');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      var btn = document.getElementById('lz-submit');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="lz-spin"></span> Sending…';
+      // NOTE: front-end only — not wired to a real endpoint yet.
+      setTimeout(function(){
+        wrap.setAttribute('data-state','success');
+        wrap.innerHTML =
+          '<div class="lz-success">' +
+            '<div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>' +
+            '<h3>Request received</h3>' +
+            '<p>Thank you — LuLu will reach out within two days to find your date.</p>' +
+            '<button type="button" data-lz-close>Close</button>' +
+          '</div>';
+      }, 1400);
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    if(!e.target.closest) return;
+    var opener = e.target.closest('.lz-book-open');
+    if(opener){ e.preventDefault(); open(opener); return; }
+    if(e.target.closest('[data-lz-close]') && modal.classList.contains('is-open')){ e.preventDefault(); close(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  });
+
+  bindForm();
+})();
+</script>
 </body>
 </html>
