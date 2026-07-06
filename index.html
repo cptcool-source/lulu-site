@@ -1,303 +1,471 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-<style id="lz-styles">
-  /* ===== LuLu & Lens — hero rebuild + booking modal (lz- namespace) ===== */
 
-  /* Hero background — site colours, no photograph */
-  .lz-hero-bg{position:absolute;inset:0;background:
-    radial-gradient(140% 120% at 82% -20%, #574670 0%, #3d3156 34%, #2a2138 64%, #221b2c 100%);}
-  .lz-godrays{position:absolute;inset:-25%;pointer-events:none;mix-blend-mode:screen;
-    background:conic-gradient(from 198deg at 84% -6%,
-      transparent 4deg, rgba(230,214,168,.22) 9deg, transparent 14deg,
-      rgba(201,184,226,.16) 21deg, transparent 28deg,
-      rgba(230,214,168,.14) 37deg, transparent 45deg,
-      rgba(217,200,236,.12) 54deg, transparent 63deg,
-      rgba(230,214,168,.10) 72deg, transparent 80deg);
-    -webkit-mask-image:radial-gradient(115% 85% at 84% -6%,#000 0%,rgba(0,0,0,.55) 46%,transparent 80%);
-            mask-image:radial-gradient(115% 85% at 84% -6%,#000 0%,rgba(0,0,0,.55) 46%,transparent 80%);
-    animation:lz-drift 16s ease-in-out infinite alternate;}
-  .lz-bloom{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
-    background:radial-gradient(26% 34% at 84% -2%, rgba(230,214,168,.34), transparent 70%);}
-  .lz-hero-fade{position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(180deg, transparent 52%, rgba(26,20,34,.5) 100%);}
-  @keyframes lz-drift{0%{transform:rotate(-5deg) translateY(-1%);opacity:.82}100%{transform:rotate(5deg) translateY(1%);opacity:1}}
+<title>Lens &amp; Lu — Family &amp; Couples Photography · Coastal California</title>
+<meta name="description" content="Lens &amp; Lu — unhurried, soulful photography for families and couples on the California coast. Beach, at-home, and golden-hour sessions by Dana. Booking 2026.">
+<link rel="canonical" href="https://cptcool-source.github.io/lulu-site/">
+<meta name="theme-color" content="#2E2118">
 
-  /* CTA button — the morph trigger */
-  .lz-cta{position:relative;display:inline-flex;align-items:center;gap:12px;font-family:'Mulish',sans-serif;
-    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#221b2c;background:#e6d6a8;
-    border:none;cursor:pointer;padding:19px 38px;border-radius:40px;white-space:nowrap;
-    box-shadow:0 22px 50px -22px rgba(230,214,168,.7);
-    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s;}
-  .lz-cta:hover{transform:translateY(-2px);background:#efdfb2;box-shadow:0 28px 62px -20px rgba(230,214,168,.85);}
-  .lz-cta svg{width:17px;height:17px;transition:transform .3s;}
-  .lz-cta:hover svg{transform:translateX(4px);}
-  .lz-book-open{border:none;cursor:pointer;font:inherit;}
+<!-- Open Graph / Twitter (og:image is a temporary stand-in — replace with a real hero photo) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lens &amp; Lu — Family &amp; Couples Photography">
+<meta property="og:description" content="Unhurried, soulful photography for families and couples on the California coast. Chasing the last light.">
+<meta property="og:url" content="https://cptcool-source.github.io/lulu-site/">
+<meta property="og:image" content="https://cptcool-source.github.io/lulu-site/assets/lulu-portrait.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lens &amp; Lu — Family &amp; Couples Photography">
+<meta name="twitter:description" content="Unhurried, soulful photography. Chasing the last light on the California coast.">
+<meta name="twitter:image" content="https://cptcool-source.github.io/lulu-site/assets/lulu-portrait.png">
 
-  /* Booking modal */
-  .lz-modal{position:fixed;inset:0;z-index:1000;display:none;}
-  .lz-modal.is-open{display:block;}
-  .lz-scrim{position:absolute;inset:0;background:rgba(18,13,26,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s ease;}
-  .lz-modal.is-open .lz-scrim{opacity:1;}
-  .lz-card{position:absolute;inset:0;overflow:hidden;background:#2a2140;box-shadow:0 50px 130px -30px rgba(0,0,0,.75);will-change:transform,border-radius;}
-  @media(min-width:640px){.lz-card{inset:22px;border-radius:24px;}}
-  .lz-mesh{position:absolute;inset:0;pointer-events:none;background:
-    radial-gradient(55% 75% at 14% 18%, #4c3b6c 0%, transparent 60%),
-    radial-gradient(48% 66% at 86% 12%, #6f5c92 0%, transparent 55%),
-    radial-gradient(72% 92% at 82% 92%, #3a2f56 0%, transparent 60%),
-    radial-gradient(60% 72% at 8% 88%, #241c39 0%, transparent 60%), #2a2140;
-    background-size:200% 200%,200% 200%,200% 200%,200% 200%,100% 100%;
-    animation:lz-mesh 20s ease-in-out infinite alternate;}
-  @keyframes lz-mesh{0%{background-position:0% 0%,100% 0%,100% 100%,0% 100%,0 0}100%{background-position:24% 28%,72% 22%,84% 70%,18% 82%,0 0}}
-  .lz-mesh-rays{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;
-    background:conic-gradient(from 220deg at 90% -4%, transparent 6deg, rgba(230,214,168,.16) 12deg, transparent 20deg, rgba(201,184,226,.12) 32deg, transparent 44deg);}
-  .lz-close{position:absolute;top:18px;right:18px;z-index:6;width:44px;height:44px;border:none;border-radius:50%;
-    background:rgba(244,239,233,.12);color:#f4efe9;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .25s;}
-  .lz-close:hover{background:rgba(244,239,233,.24);}
-  .lz-close svg{width:20px;height:20px;}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  .lz-inner{position:relative;z-index:2;height:100%;width:100%;display:flex;flex-direction:column;overflow-y:auto;
-    opacity:0;transition:opacity .4s ease .12s;}
-  .lz-modal.is-open .lz-inner{opacity:1;}
-  @media(min-width:1024px){.lz-inner{flex-direction:row;overflow:hidden;max-width:1220px;margin:0 auto;}}
-  .lz-left{flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:56px 34px 20px;color:#f4efe9;}
-  @media(min-width:1024px){.lz-left{padding:72px 56px;}}
-  .lz-right{flex:1;display:flex;align-items:center;justify-content:center;padding:12px 22px 44px;}
-  @media(min-width:1024px){.lz-right{padding:40px 56px;}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Photographer",
+  "name": "Lens & Lu",
+  "description": "Family and couples photography on the California coast.",
+  "url": "https://cptcool-source.github.io/lulu-site/",
+  "email": "hello@lensandlu.com",
+  "founder": "Dana",
+  "areaServed": "Coastal California",
+  "priceRange": "$$",
+  "sameAs": ["https://instagram.com/", "https://pinterest.com/"]
+}
+</script>
 
-  .lz-eyebrow{font-family:'Mulish',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#e6d6a8;}
-  .lz-h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:46px;line-height:1.05;margin:10px 0 0;color:#f4efe9;}
-  .lz-h2 em{font-style:italic;color:#c9b8e2;}
-  .lz-lead{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.4;color:#e7ddf1;margin:0;max-width:30ch;}
-  .lz-points{display:flex;flex-direction:column;gap:16px;font-family:'Mulish',sans-serif;}
-  .lz-point{display:flex;gap:14px;align-items:flex-start;}
-  .lz-point i{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:#e6d6a8;margin-top:7px;}
-  .lz-point b{display:block;font-size:14px;font-weight:700;color:#f4efe9;letter-spacing:.02em;}
-  .lz-point span{font-size:13px;line-height:1.55;color:#c3b6d4;}
-  .lz-stats{display:flex;gap:40px;margin-top:2px;font-family:'Mulish',sans-serif;}
-  .lz-stat b{font-family:'Cormorant Garamond',serif;font-size:40px;color:#e6d6a8;display:block;line-height:1;}
-  .lz-stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b9abc9;margin-top:6px;display:block;}
+<style>
+/* ============================================================
+   Lens & Lu — "Sunbaked Clay, dark-first" (style lock 2026-07-06)
+   Ground #2E2118 umber · Text #F4EDE1 cream · Accent #C8613C terracotta
+   Type: Instrument Serif (display) + Hanken Grotesk (body)
+   Motion vocabulary (closed set): drift · bloom · grain
+   ============================================================ */
+:root{
+  --umber:#2E2118; --umber-deep:#1F160F; --cream:#F4EDE1; --terracotta:#C8613C;
+  --sage:#8A9A7B; --sand:#E0D3BE;
+  --cream-dim:#cbbfae; --cream-soft:#a99d8c;
+  --maxw:1240px; --pad:clamp(22px,5vw,64px);
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--umber);color:var(--cream);font-family:var(--sans);font-weight:300;
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--terracotta);color:var(--cream)}
 
-  .lz-form-card{width:100%;max-width:440px;background:rgba(244,239,233,.07);border:1px solid rgba(244,239,233,.16);
-    border-radius:18px;padding:26px 26px 28px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    box-shadow:0 30px 80px -30px rgba(0,0,0,.6);}
-  .lz-form-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;margin:0 0 4px;color:#f4efe9;}
-  .lz-form-card p.sub{font-family:'Mulish',sans-serif;font-size:13px;color:#c3b6d4;margin:0 0 20px;}
-  .lz-field{margin-bottom:14px;}
-  .lz-field label{display:block;font-family:'Mulish',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c9b8e2;margin-bottom:6px;}
-  .lz-field input,.lz-field select,.lz-field textarea{width:100%;box-sizing:border-box;font-family:'Mulish',sans-serif;font-size:14px;color:#f4efe9;
-    background:rgba(26,20,34,.5);border:1px solid rgba(201,184,226,.22);border-radius:10px;padding:12px 14px;outline:none;
-    transition:border-color .2s,box-shadow .2s;}
-  .lz-field input::placeholder,.lz-field textarea::placeholder{color:rgba(244,239,233,.32);}
-  .lz-field input:focus,.lz-field select:focus,.lz-field textarea:focus{border-color:#e6d6a8;box-shadow:0 0 0 3px rgba(230,214,168,.18);}
-  .lz-field textarea{resize:none;}
-  .lz-field select{appearance:none;-webkit-appearance:none;cursor:pointer;}
-  .lz-field select option{background:#2a2140;color:#f4efe9;}
-  .lz-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .lz-submit{width:100%;margin-top:8px;font-family:'Mulish',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    color:#221b2c;background:#e6d6a8;border:none;border-radius:12px;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
-    transition:background .2s,transform .2s;}
-  .lz-submit:hover{background:#efdfb2;transform:translateY(-1px);}
-  .lz-submit:disabled{opacity:.65;cursor:default;transform:none;}
-  .lz-fine{font-family:'Mulish',sans-serif;font-size:11px;text-align:center;color:#a99cbd;margin:14px 0 0;}
-  .lz-fine a{color:#e6d6a8;text-decoration:none;}
-  .lz-spin{width:15px;height:15px;border:2px solid rgba(34,27,44,.35);border-top-color:#221b2c;border-radius:50%;animation:lz-spin .7s linear infinite;}
-  @keyframes lz-spin{to{transform:rotate(360deg)}}
-  .lz-success{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:26px 10px;}
-  .lz-success .ico{width:66px;height:66px;border-radius:50%;background:#e6d6a8;color:#221b2c;display:flex;align-items:center;justify-content:center;}
-  .lz-success .ico svg{width:32px;height:32px;}
-  .lz-success h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:0;color:#f4efe9;}
-  .lz-success p{font-family:'Mulish',sans-serif;font-size:14px;line-height:1.55;color:#c3b6d4;margin:0;max-width:34ch;}
-  .lz-success button{margin-top:6px;font-family:'Mulish',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#f4efe9;background:rgba(244,239,233,.14);border:none;border-radius:10px;padding:12px 26px;cursor:pointer;transition:background .2s;}
-  .lz-success button:hover{background:rgba(244,239,233,.24);}
+/* film grain — always on, subtle (the 'grain' verb) */
+.grain{position:fixed;inset:-50%;z-index:900;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation:grain 7s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-4%)}60%{transform:translate(-3%,2%)}80%{transform:translate(4%,-2%)}100%{transform:translate(0,0)}}
 
-  /* Responsive hero type */
-  @media(max-width:720px){
-    .lz-h1-mem{font-size:74px !important;}
-    .lz-h1-cap{font-size:52px !important;margin-left:20px !important;}
-    .lz-h1-for{font-size:74px !important;}
-    .lz-statgrid{grid-template-columns:1fr 1fr !important;}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .lz-godrays,.lz-mesh{animation:none !important;}
-  }
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--terracotta)}
+.serif{font-family:var(--serif);font-weight:400}
+.disp{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:.005em}
+.it{font-style:italic}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:11px;font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border:none;padding:17px 34px;border-radius:40px;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s,color .3s}
+.btn svg{width:16px;height:16px;transition:transform .3s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-primary{background:var(--terracotta);color:var(--cream);box-shadow:0 20px 46px -20px rgba(200,97,60,.7)}
+.btn-primary:hover{transform:translateY(-2px);background:#d46e46}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(244,239,233,.28)}
+.btn-ghost:hover{border-color:var(--cream);transform:translateY(-2px)}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;
+  padding:20px var(--pad);transition:background .4s,padding .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(31,22,15,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:13px var(--pad);border-bottom:1px solid rgba(244,239,233,.08)}
+.brand{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--cream);letter-spacing:.01em}
+.brand b{font-style:normal;font-weight:400}
+.navlinks{display:flex;gap:30px;align-items:center;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
+.navlinks a{position:relative;padding:4px 0;transition:color .25s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--terracotta);transition:width .3s}
+.navlinks a:hover{color:var(--cream)}.navlinks a:hover::after{width:100%}
+.nav .btn{padding:12px 24px}
+.navtoggle{display:none;background:none;border:none;color:var(--cream);cursor:pointer;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:120px var(--pad) 40px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(130% 120% at 78% -15%,#5a4230 0%,#3a2a1c 38%,#2a1e14 66%,var(--umber) 100%)}
+.hero-bloom{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(28% 40% at 80% 4%,rgba(230,180,120,.45),transparent 62%),radial-gradient(50% 55% at 88% -8%,rgba(200,97,60,.25),transparent 70%);
+  animation:drift 17s ease-in-out infinite alternate}
+.hero-rays{position:absolute;inset:-25%;pointer-events:none;mix-blend-mode:screen;opacity:.5;
+  background:conic-gradient(from 200deg at 82% -6%,transparent 6deg,rgba(240,210,160,.16) 11deg,transparent 17deg,rgba(230,150,90,.12) 26deg,transparent 34deg,rgba(240,210,160,.10) 46deg,transparent 56deg);
+  -webkit-mask-image:radial-gradient(120% 85% at 82% -6%,#000 0%,rgba(0,0,0,.5) 46%,transparent 80%);
+  mask-image:radial-gradient(120% 85% at 82% -6%,#000 0%,rgba(0,0,0,.5) 46%,transparent 80%);
+  animation:drift 21s ease-in-out infinite alternate-reverse}
+@keyframes drift{0%{transform:translate(0,0) rotate(-3deg);opacity:.8}100%{transform:translate(-2%,1%) rotate(3deg);opacity:1}}
+.hero-inner{position:relative;max-width:var(--maxw);margin:0 auto;width:100%}
+.hero .eyebrow{margin-bottom:26px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13vw,188px);line-height:.86;letter-spacing:-.01em;margin-bottom:30px}
+.hero h1 .it{color:var(--sand)}
+.hero .lead{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);line-height:1.4;color:var(--cream-dim);max-width:26ch;margin-bottom:38px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-meta{position:relative;max-width:var(--maxw);margin:56px auto 0;width:100%;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(244,239,233,.16)}
+.hero-meta div{padding:20px 0}
+.hero-meta .k{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-soft);margin-bottom:6px}
+.hero-meta .v{font-size:14px;font-weight:600;color:var(--cream)}
+.scrollcue{position:absolute;left:var(--pad);bottom:26px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--cream-soft);display:flex;align-items:center;gap:10px}
+.scrollcue i{display:block;width:1px;height:34px;background:linear-gradient(var(--terracotta),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---------- shared section ---------- */
+section{position:relative}
+.sec{padding:clamp(80px,12vw,150px) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(40px,6vw,68px);flex-wrap:wrap}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,74px);line-height:1;letter-spacing:.005em}
+.sec-head h2 .it{color:var(--terracotta)}
+.reveal{opacity:0;transform:translateY(28px)}
+
+/* ---------- ABOUT (light section — inverted lock) ---------- */
+.light{background:var(--cream);color:var(--umber)}
+.light .eyebrow{color:var(--terracotta)}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,6vw,80px);align-items:center}
+.about-portrait{position:relative}
+.about-portrait img{width:100%;height:min(560px,70vh);object-fit:cover;object-position:center 22%;border-radius:3px;filter:saturate(.96)}
+.about-portrait .sig{position:absolute;bottom:-20px;right:-16px;background:var(--terracotta);color:var(--cream);
+  padding:12px 26px;border-radius:3px;font-family:var(--serif);font-style:italic;font-size:25px}
+.about-portrait .tag{position:absolute;top:14px;left:14px;background:rgba(31,22,15,.6);color:var(--cream);
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;border-radius:20px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.about-body .lead{font-family:var(--serif);font-size:clamp(24px,3vw,40px);line-height:1.32;color:var(--umber);text-wrap:pretty;margin-bottom:36px}
+.stats{display:flex;gap:52px}
+.stat b{display:block;font-family:var(--serif);font-size:clamp(38px,4.4vw,52px);color:var(--terracotta);line-height:1}
+.stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a7c6a;margin-top:6px;display:block}
+
+/* ---------- SESSIONS (editorial list, NOT a card grid) ---------- */
+.sessions .row{display:grid;grid-template-columns:64px 1fr auto;gap:clamp(16px,4vw,54px);align-items:baseline;
+  padding:clamp(26px,3.4vw,40px) 0;border-top:1px solid rgba(244,239,233,.14);transition:padding-left .4s}
+.sessions .row:last-child{border-bottom:1px solid rgba(244,239,233,.14)}
+.sessions .row:hover{padding-left:12px}
+.sessions .num{font-family:var(--serif);font-size:22px;color:var(--cream-soft)}
+.sessions .row:hover .num{color:var(--terracotta)}
+.sessions h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,58px);line-height:1;margin-bottom:12px}
+.sessions p{font-size:15px;color:var(--cream-dim);max-width:52ch}
+.sessions .go{white-space:nowrap;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-soft);transition:color .3s}
+.sessions .row:hover .go{color:var(--terracotta)}
+
+/* ---------- PORTFOLIO (the ignite moment) ---------- */
+.folio{position:relative;overflow:hidden}
+.folio-bloom{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:120%;height:60%;pointer-events:none;
+  mix-blend-mode:screen;opacity:0;background:radial-gradient(50% 60% at 50% 0%,rgba(230,170,110,.5),rgba(200,97,60,.2) 45%,transparent 72%)}
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:14px}
+.tile{position:relative;overflow:hidden;border-radius:4px;background:linear-gradient(150deg,#4a3623,#2f2216);
+  display:flex;align-items:flex-end;filter:brightness(.62) saturate(.7);will-change:filter,transform,opacity}
+.tile::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/></svg>");mix-blend-mode:overlay;opacity:.35}
+.tile .cap{position:relative;z-index:2;padding:16px 18px;font-size:12px;letter-spacing:.04em;color:var(--cream);text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.tile .stand{position:absolute;z-index:2;top:12px;left:12px;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sand);background:rgba(31,22,15,.5);padding:5px 9px;border-radius:20px;border:1px solid rgba(224,211,190,.3)}
+.tile.s-a{grid-column:span 3;grid-row:span 2}
+.tile.s-b{grid-column:span 3;grid-row:span 1}
+.tile.s-c{grid-column:span 2;grid-row:span 2}
+.tile.s-d{grid-column:span 2;grid-row:span 1}
+.tile.lit{filter:brightness(1) saturate(1)}
+.folio .note{margin-top:26px;font-size:12px;color:var(--cream-soft);letter-spacing:.03em}
+
+/* ---------- PROCESS ---------- */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(22px,3vw,40px)}
+.step{border-top:1px solid rgba(46,33,24,.22);padding-top:22px}
+.light .step .n{font-family:var(--serif);font-size:clamp(38px,4vw,52px);color:var(--terracotta);line-height:1}
+.step h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:10px 0 10px}
+.step p{font-size:14px;color:#6a5c4c;line-height:1.6}
+
+/* ---------- CONTACT ---------- */
+.contact{position:relative;overflow:hidden;text-align:center;padding:clamp(100px,15vw,180px) var(--pad)}
+.contact .hero-bloom{opacity:.8}
+.contact-inner{position:relative;max-width:760px;margin:0 auto}
+.contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,9vw,116px);line-height:.98;margin:18px 0 22px}
+.contact h2 .it{color:var(--sand)}
+.contact p{font-size:16px;color:var(--cream-dim);max-width:44ch;margin:0 auto 40px}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--umber-deep);padding:44px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--cream-soft)}
+.footer .brand{font-size:22px}
+.footer .fl{display:flex;gap:26px;letter-spacing:.1em;text-transform:uppercase}
+.footer .fl a{transition:color .25s}.footer .fl a:hover{color:var(--terracotta)}
+
+/* ---------- BOOKING MODAL (ported, restyled to the lock) ---------- */
+.lz-modal{position:fixed;inset:0;z-index:1000;display:none}
+.lz-modal.is-open{display:block}
+.lz-scrim{position:absolute;inset:0;background:rgba(15,10,6,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s}
+.lz-modal.is-open .lz-scrim{opacity:1}
+.lz-card{position:absolute;inset:0;overflow:hidden;background:var(--umber);box-shadow:0 50px 130px -30px rgba(0,0,0,.8);will-change:transform,border-radius}
+@media(min-width:640px){.lz-card{inset:22px;border-radius:22px}}
+.lz-card .hero-bg{opacity:1}
+.lz-card .hero-bloom{opacity:.7}
+.lz-close{position:absolute;top:18px;right:18px;z-index:6;width:44px;height:44px;border:none;border-radius:50%;background:rgba(244,239,233,.12);color:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .25s}
+.lz-close:hover{background:rgba(244,239,233,.24)}.lz-close svg{width:20px;height:20px}
+.lz-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;overflow-y:auto;opacity:0;transition:opacity .4s ease .12s}
+.lz-modal.is-open .lz-inner{opacity:1}
+@media(min-width:1024px){.lz-inner{flex-direction:row;overflow:hidden;max-width:1160px;margin:0 auto}}
+.lz-left{flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:64px 34px 20px}
+@media(min-width:1024px){.lz-left{padding:76px 56px}}
+.lz-right{flex:1;display:flex;align-items:center;justify-content:center;padding:12px 22px 44px}
+@media(min-width:1024px){.lz-right{padding:40px 56px}}
+.lz-left h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.04}
+.lz-left h2 .it{color:var(--sand)}
+.lz-left .l{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--cream-dim);max-width:30ch}
+.lz-pts{display:flex;flex-direction:column;gap:15px}
+.lz-pt{display:flex;gap:13px;align-items:flex-start}
+.lz-pt i{flex-shrink:0;width:7px;height:7px;border-radius:50%;background:var(--terracotta);margin-top:8px}
+.lz-pt b{display:block;font-size:14px;font-weight:600}.lz-pt span{font-size:13px;color:var(--cream-soft)}
+.lz-stats{display:flex;gap:38px}
+.lz-stats .s b{font-family:var(--serif);font-size:38px;color:var(--sand);display:block;line-height:1}
+.lz-stats .s span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-soft);margin-top:5px;display:block}
+.lz-form{width:100%;max-width:430px;background:rgba(244,239,233,.06);border:1px solid rgba(244,239,233,.16);border-radius:16px;padding:26px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.lz-form h3{font-family:var(--serif);font-weight:400;font-size:27px;margin-bottom:3px}
+.lz-form .sub{font-size:13px;color:var(--cream-soft);margin-bottom:20px}
+.lz-field{margin-bottom:13px}
+.lz-field label{display:block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);margin-bottom:6px}
+.lz-field input,.lz-field select,.lz-field textarea{width:100%;box-sizing:border-box;font-family:var(--sans);font-size:14px;color:var(--cream);background:rgba(15,10,6,.5);border:1px solid rgba(224,211,190,.2);border-radius:9px;padding:12px 13px;outline:none;transition:border-color .2s,box-shadow .2s}
+.lz-field input::placeholder,.lz-field textarea::placeholder{color:rgba(244,239,233,.32)}
+.lz-field input:focus,.lz-field select:focus,.lz-field textarea:focus{border-color:var(--terracotta);box-shadow:0 0 0 3px rgba(200,97,60,.16)}
+.lz-field textarea{resize:none}.lz-field select{appearance:none;-webkit-appearance:none;cursor:pointer}
+.lz-field select option{background:var(--umber)}
+.lz-row2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.lz-submit{width:100%;margin-top:6px;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);background:var(--terracotta);border:none;border-radius:11px;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .2s,transform .2s}
+.lz-submit:hover{background:#d46e46;transform:translateY(-1px)}.lz-submit:disabled{opacity:.6;transform:none}
+.lz-fine{font-size:11px;text-align:center;color:var(--cream-soft);margin-top:13px}.lz-fine a{color:var(--sand)}
+.lz-spin{width:14px;height:14px;border:2px solid rgba(244,239,233,.4);border-top-color:var(--cream);border-radius:50%;animation:lz-spin .7s linear infinite}
+@keyframes lz-spin{to{transform:rotate(360deg)}}
+.lz-ok{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:24px 8px}
+.lz-ok .ic{width:64px;height:64px;border-radius:50%;background:var(--terracotta);color:var(--cream);display:flex;align-items:center;justify-content:center}
+.lz-ok .ic svg{width:30px;height:30px}
+.lz-ok h3{font-family:var(--serif);font-weight:400;font-size:29px}.lz-ok p{font-size:14px;color:var(--cream-dim);max-width:32ch}
+.lz-ok button{margin-top:4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:rgba(244,239,233,.14);border:none;border-radius:9px;padding:11px 24px;cursor:pointer}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .navlinks{display:none}.navtoggle{display:block}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .about-portrait .sig{right:12px}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:600px){
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .sessions .row{grid-template-columns:auto 1fr;gap:14px}
+  .sessions .go{grid-column:2;justify-self:start;margin-top:6px}
+  .process-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
+  .tile.s-a,.tile.s-b,.tile.s-c,.tile.s-d{grid-column:span 2;grid-row:span 1}
+  .tile.s-a{grid-row:span 2}
+  .stats{gap:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  .grain,.hero-bloom,.hero-rays{animation:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  body { margin: 0; }
-</style>
-</helmet>
+<div class="grain" aria-hidden="true"></div>
 
-<div style="background:#221b2c; color:#f4efe9;">
-  <!-- nav -->
-  <nav style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 24px; padding:24px 52px;">
-    <span style="display:flex; align-items:center; gap:14px; white-space:nowrap;"><img src="assets/lulu-logo.png" alt="LuLu &amp; Lens" style="width:52px; height:52px; object-fit:contain;"><span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:27px; color:#f4efe9;">LuLu &amp; Lens</span></span>
-    <div style="display:flex; align-items:center; gap:28px; font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; white-space:nowrap;">
-      <span>Home</span><span>About</span><span>Portfolio</span><span>Process</span><span>Contact</span>
-    </div>
-    <button type="button" class="lz-book-open" style="font-family:'Mulish',sans-serif; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:12px 22px; border-radius:30px; white-space:nowrap;">Let's do a shoot!</button>
-  </nav>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">Lens <b>&amp;</b> <span class="it">Lu</span></a>
+  <div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#sessions">Sessions</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button type="button" class="btn btn-primary lz-open">Book a session</button>
+</nav>
 
-  <!-- hero -->
-  <div style="position:relative; overflow:hidden; min-height:660px; display:flex; flex-direction:column; justify-content:center;">
-    <div class="lz-hero-bg"></div>
-    <div class="lz-godrays"></div>
-    <div class="lz-bloom"></div>
-    <div class="lz-hero-fade"></div>
-    <div style="position:relative; padding:20px 52px 40px;">
-      <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:26px; color:#d9c8ec; margin-bottom:10px;">Every family has a story worth keeping —</div>
-      <div style="font-family:'Cormorant Garamond',serif; line-height:.9;">
-        <div class="lz-h1-mem" style="font-weight:600; font-size:132px; letter-spacing:-.01em; color:#f4efe9;">MEMORIES</div>
-        <div class="lz-h1-cap" style="font-style:italic; font-weight:300; font-size:96px; color:#e6d6a8; margin:-6px 0 -6px 40px;">captured</div>
-        <div class="lz-h1-for" style="font-weight:600; font-size:132px; letter-spacing:.01em; color:transparent; -webkit-text-stroke:1.6px #c9b8e2;">FOREVER</div>
-      </div>
-      <button type="button" class="lz-cta lz-book-open" style="margin-top:38px;">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    </div>
-    <div class="lz-statgrid" style="position:relative; margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(233,224,242,.22); font-family:'Mulish',sans-serif;">
-      <div style="padding:18px 52px 22px;"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Speciality</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Families &amp; Couples</div></div>
-      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Sessions</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Beach · Home · Golden Hour</div></div>
-      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Based in</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Coastal California</div></div>
-      <div style="padding:18px 24px 22px; border-left:1px solid rgba(233,224,242,.15);"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#b9abc9; margin-bottom:5px;">Booking</div><div style="font-size:14px; color:#f4efe9; font-weight:600;">Now open · 2026</div></div>
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-rays" aria-hidden="true"></div>
+  <div class="hero-bloom" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="eyebrow reveal">Family &amp; couples photography · Coastal California</p>
+    <h1 class="reveal">the <span class="it">last</span><br>light</h1>
+    <p class="lead reveal">Unhurried photography for the families and couples who'd rather feel it than pose for it.</p>
+    <div class="hero-cta reveal">
+      <button type="button" class="btn btn-primary lz-open">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <a href="#work" class="btn btn-ghost">See the work</a>
     </div>
   </div>
+  <div class="hero-meta">
+    <div class="reveal"><div class="k">Speciality</div><div class="v">Families &amp; Couples</div></div>
+    <div class="reveal"><div class="k">Sessions</div><div class="v">Beach · Home · Golden Hour</div></div>
+    <div class="reveal"><div class="k">Based in</div><div class="v">Coastal California</div></div>
+    <div class="reveal"><div class="k">Booking</div><div class="v">Now open · 2026</div></div>
+  </div>
+  <div class="scrollcue" aria-hidden="true"><i></i>Scroll</div>
+</header>
 
-  <!-- intro / about -->
-  <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; padding:110px 52px; align-items:center;">
-    <div style="position:relative;">
-      <img src="assets/lulu-portrait.png" alt="LuLu" style="width:100%; height:480px; object-fit:cover; object-position:center 25%; border-radius:4px;">
-      <div style="position:absolute; bottom:-22px; right:-22px; background:#e6d6a8; padding:14px 26px; border-radius:3px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; color:#3a2f18;">— LuLu</div>
-    </div>
-    <div>
-      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:26px;">(01) &nbsp;The heart behind the lens</div>
-      <p style="font-family:'Cormorant Garamond',serif; font-weight:400; font-size:38px; line-height:1.32; margin:0; color:#f0e9f5; text-wrap:pretty;">Hi, I'm LuLu. I photograph the in-between moments — the barefoot chases down the beach, the belly laughs, the quiet way you hold each other. My work is soulful, unhurried, and honest, made for families and couples who'd rather feel something than pose for it.</p>
-      <div style="display:flex; gap:44px; margin-top:44px; font-family:'Mulish',sans-serif;">
-        <div><div style="font-family:'Cormorant Garamond',serif; font-size:44px; color:#e6d6a8;">8&nbsp;yrs</div><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; margin-top:2px;">Behind the camera</div></div>
-        <div><div style="font-family:'Cormorant Garamond',serif; font-size:44px; color:#e6d6a8;">300+</div><div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#b9abc9; margin-top:2px;">Families &amp; couples</div></div>
+<!-- ABOUT (light) -->
+<section class="sec light" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <span class="tag">Stand-in · placeholder</span>
+        <img src="assets/lulu-portrait.png" alt="Dana, photographer at Lens & Lu" width="720" height="720" loading="lazy">
+        <span class="sig">— Dana</span>
+      </div>
+      <div class="about-body">
+        <p class="eyebrow reveal">The heart behind the lens</p>
+        <p class="lead reveal">Hi, I'm Dana. I photograph the in-between moments — the barefoot chases down the beach, the belly laughs, the quiet way you hold each other. My work is soulful, unhurried, and honest, made for families and couples who'd rather feel something than pose for it.</p>
+        <div class="stats reveal">
+          <div class="stat"><b>8&nbsp;yrs</b><span>Behind the camera</span></div>
+          <div class="stat"><b>300+</b><span>Families &amp; couples</span></div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- services -->
-  <div style="background:#c9b8e2; color:#2f2836; padding:104px 52px;">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:54px;">
-      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; color:#2f2836; line-height:1;">What we make<br><span style="font-style:italic; color:#6f5c92;">together</span></h2>
-      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#6f5c92;">(02) &nbsp;Sessions</div>
+<!-- SESSIONS -->
+<section class="sec sessions" id="sessions">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">What we make<br><span class="it">together</span></h2>
+      <p class="eyebrow reveal">The sessions</p>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(47,40,54,.18); border:1px solid rgba(47,40,54,.18);">
-      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">01</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Beach Sessions</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">Golden light, salt air, and room to run. Perfect for growing families.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
-      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">02</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Family Portraits</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">At home or outdoors — relaxed, tender, and truly yours.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
-      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">03</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Engagements</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">The start of your story, captured with all its butterflies.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
-      <div style="background:#d5c7ea; padding:38px 30px 34px; min-height:280px; display:flex; flex-direction:column;"><div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#8a6f2f;">04</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px; margin:14px 0 12px; color:#2f2836;">Golden Hour</h3><p style="font-family:'Mulish',sans-serif; font-size:14px; line-height:1.6; color:#4c4257; margin:0 0 auto;">That last hour of light. Dreamy, warm, and utterly you.</p><span style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6f5c92; margin-top:26px;">Inquire for pricing →</span></div>
-    </div>
-  </div>
-
-  <!-- portfolio -->
-  <div style="padding:104px 52px; background:#221b2c;">
-    <div style="text-align:center; margin-bottom:52px;">
-      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:16px;">(03) &nbsp;Portfolio</div>
-      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; color:#f4efe9;">A look through the <span style="font-style:italic; color:#c9b8e2;">lens</span></h2>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:200px; gap:14px;">
-      <div style="grid-column:span 3; grid-row:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-1" shape="rounded" radius="4" placeholder="Beach · family — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-      <div style="grid-column:span 3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-2" shape="rounded" radius="4" placeholder="Engagement — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-      <div style="grid-column:span 3;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-3" shape="rounded" radius="4" placeholder="Golden hour — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-4" shape="rounded" radius="4" placeholder="Portrait — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-5" shape="rounded" radius="4" placeholder="Candid — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-      <div style="grid-column:span 2;"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="b-port-6" shape="rounded" radius="4" placeholder="Detail — drop photo" style="width:100%; height:100%; display:block;" hint-size="100%,100%"></x-import></div>
-    </div>
-  </div>
-
-  <!-- process -->
-  <div style="background:#efe6f6; color:#2f2836; padding:104px 52px;">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:60px;">
-      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:62px; margin:0; line-height:1;">From hello to<br><span style="font-style:italic; color:#6f5c92;">your gallery</span></h2>
-      <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8a7ba0;">(04) &nbsp;The process</div>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:40px;">
-      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">01</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">Say hello</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">Tell me about your people and the moment you want to remember.</p></div>
-      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">02</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">The plan</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">We choose a location, a time of light, and what to wear together.</p></div>
-      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">03</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">The shoot</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">Relaxed and playful. You just be together — I'll catch the rest.</p></div>
-      <div style="border-top:1px solid rgba(47,40,54,.25); padding-top:24px;"><div style="font-family:'Cormorant Garamond',serif; font-size:52px; color:#9a7d3f;">04</div><h3 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:26px; margin:10px 0 10px;">Your gallery</h3><p style="font-family:'Mulish',sans-serif; font-size:13.5px; line-height:1.6; color:#5c5266; margin:0;">A hand-edited gallery of keepsakes, delivered within two weeks.</p></div>
+    <div class="reveal">
+      <div class="row lz-open" role="button" tabindex="0">
+        <span class="num">01</span>
+        <div><h3>Beach Sessions</h3><p>Golden light, salt air, and room to run. Made for growing families.</p></div>
+        <span class="go">Inquire →</span>
+      </div>
+      <div class="row lz-open" role="button" tabindex="0">
+        <span class="num">02</span>
+        <div><h3>Family Portraits</h3><p>At home or outdoors — relaxed, tender, and truly yours.</p></div>
+        <span class="go">Inquire →</span>
+      </div>
+      <div class="row lz-open" role="button" tabindex="0">
+        <span class="num">03</span>
+        <div><h3>Engagements</h3><p>The start of your story, caught with all its nerves and butterflies.</p></div>
+        <span class="go">Inquire →</span>
+      </div>
+      <div class="row lz-open" role="button" tabindex="0">
+        <span class="num">04</span>
+        <div><h3>Golden Hour</h3><p>The last hour of light — soft, low, and unrushed.</p></div>
+        <span class="go">Inquire →</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- contact CTA -->
-  <div style="position:relative; overflow:hidden; padding:110px 52px 130px; text-align:center; background:#2f2836;">
-    <img src="assets/lulu-logo.png" alt="" style="width:118px; height:118px; object-fit:contain; padding:12px; background:#efe6f6; border-radius:50%; margin:0 auto 30px; display:block; box-shadow:0 18px 50px -18px rgba(0,0,0,.6);">
-    <div style="font-family:'Mulish',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#e6d6a8; margin-bottom:22px;">(05) &nbsp;Let's begin</div>
-    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:88px; line-height:1.02; margin:0 0 14px; color:#f4efe9;">Your people, your light,<br><span style="font-style:italic; color:#c9b8e2;">your season.</span></h2>
-    <p style="font-family:'Mulish',sans-serif; font-size:15px; color:#b9abc9; max-width:520px; margin:0 auto 40px; line-height:1.6;">Sessions book a few months out — reach out and let's find your date.</p>
-    <button type="button" class="lz-book-open" style="display:inline-flex; align-items:center; gap:12px; font-family:'Mulish',sans-serif; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#221b2c; background:#e6d6a8; padding:20px 44px; border-radius:40px; cursor:pointer; box-shadow:0 22px 50px -22px rgba(230,214,168,.7);">Let's do a shoot! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+<!-- PORTFOLIO — the ignite moment -->
+<section class="sec folio" id="work">
+  <div class="folio-bloom" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">Selected <span class="it">work</span></h2>
+      <p class="eyebrow reveal">A look through the lens</p>
+    </div>
+    <div class="gallery" id="gallery">
+      <div class="tile s-a"><span class="stand">Stand-in</span><span class="cap">Beach · family</span></div>
+      <div class="tile s-b"><span class="stand">Stand-in</span><span class="cap">Engagement</span></div>
+      <div class="tile s-c"><span class="stand">Stand-in</span><span class="cap">Golden hour</span></div>
+      <div class="tile s-d"><span class="stand">Stand-in</span><span class="cap">At home</span></div>
+      <div class="tile s-d"><span class="stand">Stand-in</span><span class="cap">Candid</span></div>
+      <div class="tile s-c"><span class="stand">Stand-in</span><span class="cap">Barefoot &amp; unhurried</span></div>
+      <div class="tile s-b"><span class="stand">Stand-in</span><span class="cap">Details</span></div>
+      <div class="tile s-a"><span class="stand">Stand-in</span><span class="cap">The quiet in-between</span></div>
+    </div>
+    <p class="note">Placeholder imagery — to be replaced with Dana's real gallery.</p>
   </div>
+</section>
 
-  <!-- footer -->
-  <div style="background:#1a1422; color:#b9abc9; padding:44px 52px; display:flex; align-items:center; justify-content:space-between; font-family:'Mulish',sans-serif; font-size:12px;">
-    <span style="display:flex; align-items:center; gap:12px;"><img src="assets/lulu-logo.png" alt="" style="width:44px; height:44px; object-fit:contain;"><span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:#f0e9f5;">LuLu &amp; Lens</span></span>
-    <div style="display:flex; gap:28px; letter-spacing:.12em; text-transform:uppercase;"><span>hello@luluandlens.com</span><span>Instagram</span><span>Pinterest</span></div>
-    <span style="opacity:.6;">© 2026 · Coastal California</span>
+<!-- PROCESS (light) -->
+<section class="sec light" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">From hello to<br><span class="it">your gallery</span></h2>
+      <p class="eyebrow reveal">The process</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal"><div class="n">01</div><h3>Say hello</h3><p>Tell me about your people and the moment you want to remember.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3>The plan</h3><p>We choose a location, a time of light, and what to wear — together.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3>The shoot</h3><p>Relaxed and playful. You just be together — I'll catch the rest.</p></div>
+      <div class="step reveal"><div class="n">04</div><h3>Your gallery</h3><p>A hand-edited gallery of keepsakes, delivered within two weeks.</p></div>
+    </div>
   </div>
-</div>
-</x-dc>
+</section>
 
-<!-- ===== Booking modal (vanilla port of the expanding-CTA hero pattern) ===== -->
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="hero-bg"></div>
+  <div class="hero-bloom" aria-hidden="true"></div>
+  <div class="contact-inner">
+    <p class="eyebrow reveal">Let's begin</p>
+    <h2 class="reveal">Your people, your light,<br><span class="it">your season.</span></h2>
+    <p class="reveal">Sessions book a few months out — reach out and let's find your date.</p>
+    <button type="button" class="btn btn-primary lz-open reveal">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="#top" class="brand serif it">Lens &amp; Lu</a>
+  <div class="fl">
+    <a href="mailto:hello@lensandlu.com">hello@lensandlu.com</a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://pinterest.com/" target="_blank" rel="noopener">Pinterest</a>
+  </div>
+  <span>© 2026 · Coastal California</span>
+</footer>
+
+<!-- BOOKING MODAL -->
 <div class="lz-modal" id="lz-modal" role="dialog" aria-modal="true" aria-label="Book a session" aria-hidden="true">
   <div class="lz-scrim" data-lz-close></div>
   <div class="lz-card" id="lz-card">
-    <div class="lz-mesh"></div>
-    <div class="lz-mesh-rays"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-bloom" aria-hidden="true"></div>
     <button type="button" class="lz-close" data-lz-close aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <div class="lz-inner">
-      <!-- left: the invitation -->
       <div class="lz-left">
         <div>
-          <div class="lz-eyebrow">Let's begin</div>
-          <h2 class="lz-h2">Let's make something<br><em>you'll keep.</em></h2>
+          <p class="eyebrow" style="margin-bottom:12px">Let's begin</p>
+          <h2 class="serif">Let's make something<br><span class="it">you'll keep.</span></h2>
         </div>
-        <p class="lz-lead">Tell me about your people and the season you're in. I photograph the in-between moments — unhurried, soulful, and honest.</p>
-        <div class="lz-points">
-          <div class="lz-point"><i></i><div><b>Beach · Home · Golden Hour</b><span>Sessions shaped around your family and your light.</span></div></div>
-          <div class="lz-point"><i></i><div><b>Delivered in two weeks</b><span>A hand-edited gallery of keepsakes, yours to hold.</span></div></div>
+        <p class="l">Tell me about your people and the season you're in. I photograph the in-between moments — unhurried, soulful, and honest.</p>
+        <div class="lz-pts">
+          <div class="lz-pt"><i></i><div><b>Beach · Home · Golden Hour</b><span>Sessions shaped around your family and your light.</span></div></div>
+          <div class="lz-pt"><i></i><div><b>Delivered in two weeks</b><span>A hand-edited gallery of keepsakes, yours to hold.</span></div></div>
         </div>
         <div class="lz-stats">
-          <div class="lz-stat"><b>8&nbsp;yrs</b><span>Behind the camera</span></div>
-          <div class="lz-stat"><b>300+</b><span>Families &amp; couples</span></div>
+          <div class="s"><b>8&nbsp;yrs</b><span>Behind the camera</span></div>
+          <div class="s"><b>300+</b><span>Families &amp; couples</span></div>
         </div>
       </div>
-      <!-- right: the form -->
       <div class="lz-right">
-        <div class="lz-form-card" id="lz-form-wrap">
+        <div class="lz-form" id="lz-form-wrap">
           <form id="lz-form" novalidate>
-            <h3>Request a session</h3>
+            <h3 class="serif">Request a session</h3>
             <p class="sub">I'll be in touch within two days.</p>
-            <div class="lz-field"><label for="lz-name">Full name</label><input id="lz-name" name="name" type="text" placeholder="Your name" required></div>
-            <div class="lz-field"><label for="lz-email">Email</label><input id="lz-email" name="email" type="email" placeholder="you@email.com" required></div>
+            <div class="lz-field"><label for="lz-name">Full name</label><input id="lz-name" type="text" placeholder="Your name" required></div>
+            <div class="lz-field"><label for="lz-email">Email</label><input id="lz-email" type="email" placeholder="you@email.com" required></div>
             <div class="lz-row2">
               <div class="lz-field"><label for="lz-type">Session</label>
-                <select id="lz-type" name="session">
-                  <option>Beach Session</option>
-                  <option>Family Portraits</option>
-                  <option>Engagement</option>
-                  <option>Golden Hour</option>
-                </select>
+                <select id="lz-type"><option>Beach Session</option><option>Family Portraits</option><option>Engagement</option><option>Golden Hour</option></select>
               </div>
-              <div class="lz-field"><label for="lz-when">Ideal month</label><input id="lz-when" name="when" type="text" placeholder="e.g. June"></div>
+              <div class="lz-field"><label for="lz-when">Ideal month</label><input id="lz-when" type="text" placeholder="e.g. June"></div>
             </div>
-            <div class="lz-field"><label for="lz-msg">A few words</label><textarea id="lz-msg" name="message" rows="3" placeholder="Tell me about your family…"></textarea></div>
+            <div class="lz-field"><label for="lz-msg">A few words</label><textarea id="lz-msg" rows="3" placeholder="Tell me about your family…"></textarea></div>
             <button type="submit" class="lz-submit" id="lz-submit">Send inquiry</button>
-            <p class="lz-fine">Prefer email? <a href="mailto:hello@luluandlens.com">hello@luluandlens.com</a></p>
+            <p class="lz-fine">Prefer email? <a href="mailto:hello@lensandlu.com">hello@lensandlu.com</a></p>
           </form>
         </div>
       </div>
@@ -305,90 +473,82 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script>
 (function(){
-  var modal = document.getElementById('lz-modal');
-  var card  = document.getElementById('lz-card');
-  var wrap  = document.getElementById('lz-form-wrap');
-  var FORM_HTML = wrap ? wrap.innerHTML : '';
-  var lastTrigger = null;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  function morph(fromOpen){
-    if(!lastTrigger || !card.animate) return null;
-    var t = lastTrigger.getBoundingClientRect();
-    var f = card.getBoundingClientRect();
-    if(!f.width || !f.height) return null;
-    var sx = Math.max(t.width / f.width, 0.05);
-    var sy = Math.max(t.height / f.height, 0.05);
-    var tx = (t.left + t.width/2) - (f.left + f.width/2);
-    var ty = (t.top + t.height/2) - (f.top + f.height/2);
-    var round = (window.innerWidth >= 640) ? '24px' : '0px';
-    var small = {transform:'translate('+tx+'px,'+ty+'px) scale('+sx+','+sy+')', borderRadius:'40px', opacity:0.3};
-    var full  = {transform:'none', borderRadius:round, opacity:1};
-    return fromOpen
-      ? card.animate([small, full], {duration:520, easing:'cubic-bezier(.2,.8,.2,1)'})
-      : card.animate([full, small], {duration:360, easing:'cubic-bezier(.4,0,.2,1)'});
+  /* nav scrolled state */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 40); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* GSAP reveals + the portfolio ignite moment */
+  if(window.gsap && window.ScrollTrigger && !reduce){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 88%'}});
+    });
+    // ignite: tiles brighten + bloom blooms as the gallery enters
+    var tiles = gsap.utils.toArray('#gallery .tile');
+    ScrollTrigger.create({
+      trigger:'#gallery', start:'top 78%',
+      onEnter:function(){
+        gsap.to('.folio-bloom',{opacity:1,duration:1.1,ease:'power2.out'});
+        gsap.to('.folio-bloom',{opacity:.25,duration:2.2,delay:1.1,ease:'power2.inOut'});
+        tiles.forEach(function(t,i){ gsap.delayedCall(i*0.09,function(){ t.classList.add('lit'); }); });
+      }
+    });
+  } else {
+    // reduced-motion / no-GSAP fallback: everything visible, tiles lit
+    document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none';});
+    document.querySelectorAll('#gallery .tile').forEach(function(t){t.classList.add('lit');});
   }
 
-  function open(trigger){
-    lastTrigger = trigger || null;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-    morph(true);
+  /* ---- booking modal (FLIP morph) ---- */
+  var modal=document.getElementById('lz-modal'), card=document.getElementById('lz-card'),
+      wrap=document.getElementById('lz-form-wrap'), FORM=wrap?wrap.innerHTML:'', last=null;
+  function morph(open){
+    if(!last||!card.animate) return;
+    var t=last.getBoundingClientRect(), f=card.getBoundingClientRect();
+    if(!f.width) return;
+    var sx=Math.max(t.width/f.width,.05), sy=Math.max(t.height/f.height,.05),
+        tx=(t.left+t.width/2)-(f.left+f.width/2), ty=(t.top+t.height/2)-(f.top+f.height/2),
+        r=(window.innerWidth>=640)?'22px':'0px',
+        small={transform:'translate('+tx+'px,'+ty+'px) scale('+sx+','+sy+')',borderRadius:'40px',opacity:.3},
+        full={transform:'none',borderRadius:r,opacity:1};
+    return open?card.animate([small,full],{duration:500,easing:'cubic-bezier(.2,.8,.2,1)'})
+               :card.animate([full,small],{duration:340,easing:'cubic-bezier(.4,0,.2,1)'});
   }
-
-  function close(){
-    document.body.style.overflow = '';
-    modal.setAttribute('aria-hidden','true');
-    var finish = function(){ modal.classList.remove('is-open'); resetForm(); };
-    var anim = morph(false);
-    if(anim){ anim.onfinish = finish; anim.oncancel = finish; }
-    else finish();
-  }
-
-  function resetForm(){
-    if(wrap && wrap.getAttribute('data-state') === 'success'){
-      wrap.setAttribute('data-state','');
-      wrap.innerHTML = FORM_HTML;
-      bindForm();
-    }
-  }
-
-  function bindForm(){
-    var form = document.getElementById('lz-form');
-    if(!form) return;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      if(!form.checkValidity()){ form.reportValidity(); return; }
-      var btn = document.getElementById('lz-submit');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="lz-spin"></span> Sending…';
+  function open(tr){ last=tr; modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; morph(true); }
+  function close(){ document.body.style.overflow=''; modal.setAttribute('aria-hidden','true');
+    var done=function(){ modal.classList.remove('is-open'); reset(); }, a=morph(false);
+    if(a){a.onfinish=done;a.oncancel=done;} else done(); }
+  function reset(){ if(wrap.getAttribute('data-state')==='ok'){ wrap.setAttribute('data-state',''); wrap.innerHTML=FORM; bind(); } }
+  function bind(){
+    var form=document.getElementById('lz-form'); if(!form) return;
+    form.addEventListener('submit',function(e){
+      e.preventDefault(); if(!form.checkValidity()){form.reportValidity();return;}
+      var b=document.getElementById('lz-submit'); b.disabled=true; b.innerHTML='<span class="lz-spin"></span> Sending…';
       // NOTE: front-end only — not wired to a real endpoint yet.
       setTimeout(function(){
-        wrap.setAttribute('data-state','success');
-        wrap.innerHTML =
-          '<div class="lz-success">' +
-            '<div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>' +
-            '<h3>Request received</h3>' +
-            '<p>Thank you — LuLu will reach out within two days to find your date.</p>' +
-            '<button type="button" data-lz-close>Close</button>' +
-          '</div>';
-      }, 1400);
+        wrap.setAttribute('data-state','ok');
+        wrap.innerHTML='<div class="lz-ok"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h3 class="serif">Request received</h3><p>Thank you — Dana will reach out within two days to find your date.</p><button type="button" data-lz-close>Close</button></div>';
+      },1400);
     });
   }
-
-  document.addEventListener('click', function(e){
+  document.addEventListener('click',function(e){
     if(!e.target.closest) return;
-    var opener = e.target.closest('.lz-book-open');
-    if(opener){ e.preventDefault(); open(opener); return; }
+    var o=e.target.closest('.lz-open'); if(o){ e.preventDefault(); open(o); return; }
     if(e.target.closest('[data-lz-close]') && modal.classList.contains('is-open')){ e.preventDefault(); close(); }
   });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&modal.classList.contains('is-open')) close();
+    if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('lz-open')&&e.target.getAttribute('role')==='button'){ e.preventDefault(); open(e.target); }
   });
-
-  bindForm();
+  bind();
 })();
 </script>
 </body>

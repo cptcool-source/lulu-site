@@ -1,6 +1,6 @@
-# LuLu &amp; Lens — Photography Site
+# Lens &amp; Lu — Photography Site
 
-**Brand:** LuLu &amp; Lens · family &amp; couples photographer, Coastal California
+**Brand:** Lens &amp; Lu · family &amp; couples photographer, Coastal California
 **Owner:** Charles Spivey / chuck design (build)
 **Live site:** _not deployed yet — GitHub Pages target_
 
@@ -8,10 +8,10 @@
 
 ## Project
 
-A single-page portfolio / booking site for LuLu &amp; Lens, a family and couples
+A single-page portfolio / booking site for Lens &amp; Lu, a family and couples
 photographer ("Every family has a story worth keeping — MEMORIES captured FOREVER").
 Sessions: Beach · Home · Golden Hour. Primary action: **inquire / book a session**
-(`hello@luluandlens.com`).
+(`hello@lensandlu.com`).
 
 Originated as a **claude.ai Design Composer export** (`.dc.html`), renamed to `index.html`
 as the web entry point. The original export is preserved in `../lulu-site.zip`.
@@ -25,7 +25,7 @@ as the web entry point. The original export is preserved in `../lulu-site.zip`.
 | Markup | Single-file `index.html`, inline styles (design-composer output) |
 | Runtime | `support.js` — claude Design Composer support runtime (required) |
 | Components | `image-slot.js` — `<x-import>` drop-photo web component for the portfolio grid |
-| Fonts | Cormorant Garamond (display, italic) + Mulish (body) — Google Fonts |
+| Fonts | Instrument Serif (display, italic) + Hanken Grotesk (body) — Google Fonts |
 | Images | `assets/` — logo, portrait, painting; portfolio slots are drop-in via image-slot |
 | Hosting | Static — GitHub Pages ready (serve over HTTP, not `file://`) |
 
@@ -41,12 +41,18 @@ lulu-site/
 └── README.md
 ```
 
-## Brand tokens (observed from the export — confirm before locking)
+## Style lock — "Sunbaked Clay, dark-first" (locked 2026-07-06)
 
-- **Palette:** plum/ink `#221b2c` · `#2f2836` · `#6f5c92` · lavender `#b9abc9` /
-  `#d5c7ea` / `#c9b8e2` · cream `#f4efe9` · champagne-gold `#e6d6a8` / `#9a7d3f`
-- **Type:** Cormorant Garamond (italic display) + Mulish (body)
-- Its **own identity** — not the chuck design brand (no Outfit/coral, no Pixel mark).
+Archetype: **Free Spirit · Lover · Creator** — *"the last 40 minutes of daylight."*
+Motion vocabulary (closed set): **drift · bloom · grain.**
+
+- **3-hex lock:** ground umber `#2E2118` · text cream `#F4EDE1` · accent terracotta `#C8613C`
+  (action / large display only — never body). Light sections = the same three hexes inverted.
+- **Supporting neutrals** (outside the lock): sage `#8A9A7B`, sand `#E0D3BE`.
+- **Type:** Instrument Serif (display, italic) + Hanken Grotesk (body).
+- Its **own identity** — not the chuck design brand (no Outfit/coral, no Pixel mark; Fraunces banned).
+
+*(The current `index.html` still ships the pre-lock plum/Cormorant export — rebuild to this lock is pending; real photography required before styling.)*
 
 ## Local preview
 
