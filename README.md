@@ -45,7 +45,7 @@ lulu-site/
 
 Archetype: **Free Spirit · Lover · Creator.** Motion (closed set): **drift · bloom · grain.**
 
-- **Grounds (dark):** olive `#3A3A2A` (main) · plum `#322A3A` (contact) · slate `#2A323A` (scroll-nav, modal).
+- **Grounds (dark):** olive `#3A3A2A` (main) · plum `#322A3A` (contact) · deep plum `#26202E` (footer) · slate `#2A323A` (modal). Scroll-nav = cream bar, olive text.
 - **Text:** cream `#F4EDE1`. Light "breathing" sections (About, Process) = cream ground + olive text.
 - **Accent:** lavender `#C3B4D6` (eyebrows, italic words, stats, hover). Buttons cream-filled + olive text.
 - **Type:** Instrument Serif (display, italic) + Hanken Grotesk (body).

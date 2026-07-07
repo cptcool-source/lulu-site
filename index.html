@@ -89,7 +89,11 @@ a{color:inherit;text-decoration:none}
 /* ---------- NAV ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;
   padding:20px var(--pad);transition:background .4s,padding .4s,backdrop-filter .4s}
-.nav.scrolled{background:rgba(58,58,42,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:13px var(--pad);border-bottom:1px solid rgba(244,239,233,.1)}
+.nav.scrolled{background:rgba(244,239,233,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:13px var(--pad);border-bottom:1px solid rgba(58,58,42,.12)}
+.nav.scrolled .brand,.nav.scrolled .navlinks{color:var(--umber)}
+.nav.scrolled .navlinks a:hover{color:#1a1a12}
+.nav.scrolled .navlinks a::after{background:var(--umber)}
+.nav.scrolled .btn-primary{background:var(--umber);color:var(--cream)}
 .brand{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--cream);letter-spacing:.01em}
 .brand b{font-style:normal;font-weight:400}
 .navlinks{display:flex;gap:30px;align-items:center;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
@@ -197,7 +201,7 @@ section{position:relative}
 .contact p{font-size:16px;color:var(--cream-dim);max-width:44ch;margin:0 auto 40px}
 
 /* ---------- FOOTER ---------- */
-.footer{background:var(--umber);padding:44px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--cream-soft)}
+.footer{background:var(--umber-deep);padding:44px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--cream-soft)}
 .footer .brand{font-size:22px}
 .footer .fl{display:flex;gap:26px;letter-spacing:.1em;text-transform:uppercase}
 .footer .fl a{transition:color .25s}.footer .fl a:hover{color:var(--terracotta)}
