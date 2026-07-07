@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Lens &amp; Lu — Family &amp; Couples Photography · Coastal California</title>
-<meta name="description" content="Lens &amp; Lu — unhurried, soulful photography for families and couples on the California coast. Beach, at-home, and golden-hour sessions by Dana. Booking 2026.">
+<title>Lens &amp; Lu — Family &amp; Couples Photography · Southwest Florida</title>
+<meta name="description" content="Lens &amp; Lu — unhurried, soulful photography for families and couples on Florida's Gulf Coast. Beach, at-home, and golden-hour sessions by Dana. Booking 2026.">
 <link rel="canonical" href="https://cptcool-source.github.io/lulu-site/">
 <meta name="theme-color" content="#2E2118">
 
 <!-- Open Graph / Twitter (og:image is a temporary stand-in — replace with a real hero photo) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lens &amp; Lu — Family &amp; Couples Photography">
-<meta property="og:description" content="Unhurried, soulful photography for families and couples on the California coast. Chasing the last light.">
+<meta property="og:description" content="Unhurried, soulful photography for families and couples on Florida's Gulf Coast. Chasing the last light.">
 <meta property="og:url" content="https://cptcool-source.github.io/lulu-site/">
-<meta property="og:image" content="https://cptcool-source.github.io/lulu-site/assets/lulu-portrait.png">
+<meta property="og:image" content="https://cptcool-source.github.io/lulu-site/assets/dana-portrait.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lens &amp; Lu — Family &amp; Couples Photography">
-<meta name="twitter:description" content="Unhurried, soulful photography. Chasing the last light on the California coast.">
-<meta name="twitter:image" content="https://cptcool-source.github.io/lulu-site/assets/lulu-portrait.png">
+<meta name="twitter:description" content="Unhurried, soulful photography. Chasing the last light on Florida's Gulf Coast.">
+<meta name="twitter:image" content="https://cptcool-source.github.io/lulu-site/assets/dana-portrait.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,11 +29,13 @@
   "@context": "https://schema.org",
   "@type": "Photographer",
   "name": "Lens & Lu",
-  "description": "Family and couples photography on the California coast.",
+  "description": "Family and couples photography on Florida's Gulf Coast.",
   "url": "https://cptcool-source.github.io/lulu-site/",
+  "image": "https://cptcool-source.github.io/lulu-site/assets/dana-portrait.jpg",
   "email": "hello@lensandlu.com",
+  "telephone": "+1-404-576-9351",
   "founder": "Dana",
-  "areaServed": "Coastal California",
+  "areaServed": "Southwest Florida",
   "priceRange": "$$",
   "sameAs": ["https://instagram.com/", "https://pinterest.com/"]
 }
@@ -109,10 +111,11 @@ a{color:inherit;text-decoration:none}
   mask-image:radial-gradient(120% 85% at 82% -6%,#000 0%,rgba(0,0,0,.5) 46%,transparent 80%);
   animation:drift 21s ease-in-out infinite alternate-reverse}
 @keyframes drift{0%{transform:translate(0,0) rotate(-3deg);opacity:.8}100%{transform:translate(-2%,1%) rotate(3deg);opacity:1}}
-.hero-inner{position:relative;max-width:var(--maxw);margin:0 auto;width:100%}
+.hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%}
 .hero .eyebrow{margin-bottom:26px}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13vw,188px);line-height:.86;letter-spacing:-.01em;margin-bottom:30px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,108px);line-height:.98;letter-spacing:-.005em;margin-bottom:30px}
 .hero h1 .it{color:var(--sand)}
+.hero h1 .caps{text-transform:uppercase;color:var(--sand);letter-spacing:.015em}
 .hero .lead{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);line-height:1.4;color:var(--cream-dim);max-width:26ch;margin-bottom:38px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 .hero-meta{position:relative;max-width:var(--maxw);margin:56px auto 0;width:100%;display:grid;grid-template-columns:repeat(4,1fr);
@@ -163,17 +166,14 @@ section{position:relative}
 .folio{position:relative;overflow:hidden}
 .folio-bloom{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:120%;height:60%;pointer-events:none;
   mix-blend-mode:screen;opacity:0;background:radial-gradient(50% 60% at 50% 0%,rgba(230,170,110,.5),rgba(200,97,60,.2) 45%,transparent 72%)}
-.gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:14px}
-.tile{position:relative;overflow:hidden;border-radius:4px;background:linear-gradient(150deg,#4a3623,#2f2216);
-  display:flex;align-items:flex-end;filter:brightness(.62) saturate(.7);will-change:filter,transform,opacity}
+.gallery{column-count:3;column-gap:14px}
+.tile{position:relative;overflow:hidden;border-radius:4px;margin:0 0 14px;break-inside:avoid;filter:brightness(.6) saturate(.72);transition:filter .7s ease,transform .5s ease;will-change:filter,transform}
 .tile::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/></svg>");mix-blend-mode:overlay;opacity:.35}
+.tile img{display:block;width:100%;height:auto}
 .tile .cap{position:relative;z-index:2;padding:16px 18px;font-size:12px;letter-spacing:.04em;color:var(--cream);text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .tile .stand{position:absolute;z-index:2;top:12px;left:12px;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
   color:var(--sand);background:rgba(31,22,15,.5);padding:5px 9px;border-radius:20px;border:1px solid rgba(224,211,190,.3)}
-.tile.s-a{grid-column:span 3;grid-row:span 2}
-.tile.s-b{grid-column:span 3;grid-row:span 1}
-.tile.s-c{grid-column:span 2;grid-row:span 2}
-.tile.s-d{grid-column:span 2;grid-row:span 1}
+.tile:hover{transform:translateY(-4px)}
 .tile.lit{filter:brightness(1) saturate(1)}
 .folio .note{margin-top:26px;font-size:12px;color:var(--cream-soft);letter-spacing:.03em}
 
@@ -254,16 +254,14 @@ section{position:relative}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .about-portrait .sig{right:12px}
   .process-grid{grid-template-columns:1fr 1fr}
-  .gallery{grid-template-columns:repeat(4,1fr)}
+  .gallery{column-count:2}
 }
 @media(max-width:600px){
   .hero-meta{grid-template-columns:1fr 1fr}
   .sessions .row{grid-template-columns:auto 1fr;gap:14px}
   .sessions .go{grid-column:2;justify-self:start;margin-top:6px}
   .process-grid{grid-template-columns:1fr}
-  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
-  .tile.s-a,.tile.s-b,.tile.s-c,.tile.s-d{grid-column:span 2;grid-row:span 1}
-  .tile.s-a{grid-row:span 2}
+  .gallery{column-count:2}
   .stats{gap:34px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -294,8 +292,8 @@ section{position:relative}
   <div class="hero-rays" aria-hidden="true"></div>
   <div class="hero-bloom" aria-hidden="true"></div>
   <div class="hero-inner">
-    <p class="eyebrow reveal">Family &amp; couples photography · Coastal California</p>
-    <h1 class="reveal">the <span class="it">last</span><br>light</h1>
+    <p class="eyebrow reveal">Family &amp; couples photography · Southwest Florida</p>
+    <h1 class="reveal">Stay a little <span class="it">wild</span>,<br>let's make <span class="caps">memories</span></h1>
     <p class="lead reveal">Unhurried photography for the families and couples who'd rather feel it than pose for it.</p>
     <div class="hero-cta reveal">
       <button type="button" class="btn btn-primary lz-open">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
@@ -305,7 +303,7 @@ section{position:relative}
   <div class="hero-meta">
     <div class="reveal"><div class="k">Speciality</div><div class="v">Families &amp; Couples</div></div>
     <div class="reveal"><div class="k">Sessions</div><div class="v">Beach · Home · Golden Hour</div></div>
-    <div class="reveal"><div class="k">Based in</div><div class="v">Coastal California</div></div>
+    <div class="reveal"><div class="k">Based in</div><div class="v">Southwest Florida</div></div>
     <div class="reveal"><div class="k">Booking</div><div class="v">Now open · 2026</div></div>
   </div>
   <div class="scrollcue" aria-hidden="true"><i></i>Scroll</div>
@@ -316,8 +314,7 @@ section{position:relative}
   <div class="wrap">
     <div class="about-grid">
       <div class="about-portrait reveal">
-        <span class="tag">Stand-in · placeholder</span>
-        <img src="assets/lulu-portrait.png" alt="Dana, photographer at Lens & Lu" width="720" height="720" loading="lazy">
+        <img src="assets/dana-portrait.webp" alt="Dana, photographer at Lens & Lu" width="800" height="800" loading="lazy">
         <span class="sig">— Dana</span>
       </div>
       <div class="about-body">
@@ -373,16 +370,18 @@ section{position:relative}
       <p class="eyebrow reveal">A look through the lens</p>
     </div>
     <div class="gallery" id="gallery">
-      <div class="tile s-a"><span class="stand">Stand-in</span><span class="cap">Beach · family</span></div>
-      <div class="tile s-b"><span class="stand">Stand-in</span><span class="cap">Engagement</span></div>
-      <div class="tile s-c"><span class="stand">Stand-in</span><span class="cap">Golden hour</span></div>
-      <div class="tile s-d"><span class="stand">Stand-in</span><span class="cap">At home</span></div>
-      <div class="tile s-d"><span class="stand">Stand-in</span><span class="cap">Candid</span></div>
-      <div class="tile s-c"><span class="stand">Stand-in</span><span class="cap">Barefoot &amp; unhurried</span></div>
-      <div class="tile s-b"><span class="stand">Stand-in</span><span class="cap">Details</span></div>
-      <div class="tile s-a"><span class="stand">Stand-in</span><span class="cap">The quiet in-between</span></div>
+      <div class="tile"><img src="assets/folio-1.webp" alt="Mother and daughter at sunset on the beach" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-2.webp" alt="Partner kissing an expecting mother's belly under the pier" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-3.webp" alt="Couple kissing under the pier at golden hour" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-4.webp" alt="Expecting mother laughing on the beach" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-5.webp" alt="Couple dancing under the pier" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-6.webp" alt="Couple together on the beach at golden hour" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-7.webp" alt="Couple dancing at the water's edge" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-8.webp" alt="Couple holding hands on the beach" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-9.webp" alt="Couple twirling under the pier" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-10.webp" alt="Couple kissing at the shoreline" loading="lazy"></div>
+      <div class="tile"><img src="assets/folio-11.webp" alt="Couple dancing under the pier at sunset" loading="lazy"></div>
     </div>
-    <p class="note">Placeholder imagery — to be replaced with Dana's real gallery.</p>
   </div>
 </section>
 
@@ -411,6 +410,7 @@ section{position:relative}
     <h2 class="reveal">Your people, your light,<br><span class="it">your season.</span></h2>
     <p class="reveal">Sessions book a few months out — reach out and let's find your date.</p>
     <button type="button" class="btn btn-primary lz-open reveal">Book your session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <p class="reveal" style="margin-top:22px;font-family:var(--sans);font-size:13px;letter-spacing:.03em;color:var(--cream-soft)">or call <a href="tel:+14045769351" style="color:var(--sand)">(404)&nbsp;576-9351</a></p>
   </div>
 </section>
 
@@ -418,11 +418,12 @@ section{position:relative}
 <footer class="footer">
   <a href="#top" class="brand serif it">Lens &amp; Lu</a>
   <div class="fl">
+    <a href="tel:+14045769351">(404) 576-9351</a>
     <a href="mailto:hello@lensandlu.com">hello@lensandlu.com</a>
     <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
     <a href="https://pinterest.com/" target="_blank" rel="noopener">Pinterest</a>
   </div>
-  <span>© 2026 · Coastal California</span>
+  <span>© 2026 · Southwest Florida</span>
 </footer>
 
 <!-- BOOKING MODAL -->
@@ -465,7 +466,7 @@ section{position:relative}
             </div>
             <div class="lz-field"><label for="lz-msg">A few words</label><textarea id="lz-msg" rows="3" placeholder="Tell me about your family…"></textarea></div>
             <button type="submit" class="lz-submit" id="lz-submit">Send inquiry</button>
-            <p class="lz-fine">Prefer email? <a href="mailto:hello@lensandlu.com">hello@lensandlu.com</a></p>
+            <p class="lz-fine">Prefer to talk? <a href="mailto:hello@lensandlu.com">hello@lensandlu.com</a> · <a href="tel:+14045769351">(404) 576-9351</a></p>
           </form>
         </div>
       </div>

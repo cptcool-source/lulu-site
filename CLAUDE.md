@@ -28,11 +28,13 @@
 - **Accent rule:** terracotta is for ACTION and large display ONLY (~3:1 on umber) — never
   body copy. Body is always cream-on-umber (or umber-on-cream) — both safe.
 - Supporting neutrals (NOT part of the 3-lock; use sparingly): sage `#8A9A7B`, sand `#E0D3BE`.
-- Type: **Instrument Serif** (display, incl. italic) + **Hanken Grotesk** (body).
+- Type: **Instrument Serif** (display, incl. italic) + **Hanken Grotesk** (body). Two fonts
+  only. (A bold Hanken-900 all-caps hero was tried 2026-07-06 and reverted — too hard-edged
+  for the soulful boho archetype.)
 
 ## Project Context
 Single-page portfolio + booking site for Lens &amp; Lu, a family &amp; couples photographer
-in Coastal California. Voice is warm and personal ("I photograph the in-between moments").
+in Southwest Florida. Voice is warm and personal ("I photograph the in-between moments").
 Sessions: Beach · Home · Golden Hour. Primary CTA: **inquire / book a session**
 (`hello@lensandlu.com`); Instagram is the secondary channel.
 

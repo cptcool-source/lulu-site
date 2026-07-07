@@ -1,6 +1,6 @@
 # Lens &amp; Lu — Photography Site
 
-**Brand:** Lens &amp; Lu · family &amp; couples photographer, Coastal California
+**Brand:** Lens &amp; Lu · family &amp; couples photographer, Southwest Florida
 **Owner:** Charles Spivey / chuck design (build)
 **Live site:** _not deployed yet — GitHub Pages target_
 
@@ -36,7 +36,7 @@ lulu-site/
 ├── index.html        # entry point (was "LuLu & Lens.dc.html")
 ├── support.js        # design-composer runtime — do not remove
 ├── image-slot.js     # drop-photo web component (portfolio grid)
-├── assets/           # lulu-logo.png, lulu-portrait.png, lulu-painting.jpg
+├── assets/           # dana-portrait.webp (page) + .jpg (social), lulu-logo.png
 ├── CLAUDE.md         # project stack + brand lock
 └── README.md
 ```
