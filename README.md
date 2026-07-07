@@ -41,18 +41,17 @@ lulu-site/
 └── README.md
 ```
 
-## Style lock — "Sunbaked Clay, dark-first" (locked 2026-07-06)
+## Style lock — moody palette (client pivot 2026-07-06, no orange)
 
-Archetype: **Free Spirit · Lover · Creator** — *"the last 40 minutes of daylight."*
-Motion vocabulary (closed set): **drift · bloom · grain.**
+Archetype: **Free Spirit · Lover · Creator.** Motion (closed set): **drift · bloom · grain.**
 
-- **3-hex lock:** ground umber `#2E2118` · text cream `#F4EDE1` · accent terracotta `#C8613C`
-  (action / large display only — never body). Light sections = the same three hexes inverted.
-- **Supporting neutrals** (outside the lock): sage `#8A9A7B`, sand `#E0D3BE`.
+- **Grounds (dark):** olive `#3A3A2A` (main) · plum `#322A3A` (contact) · slate `#2A323A` (scroll-nav, modal).
+- **Text:** cream `#F4EDE1`. Light "breathing" sections (About, Process) = cream ground + olive text.
+- **Accent:** lavender `#C3B4D6` (eyebrows, italic words, stats, hover). Buttons cream-filled + olive text.
 - **Type:** Instrument Serif (display, italic) + Hanken Grotesk (body).
-- Its **own identity** — not the chuck design brand (no Outfit/coral, no Pixel mark; Fraunces banned).
+- Its **own identity** — not chuck design (no Outfit/coral/Pixel mark; Fraunces banned; no orange).
 
-*(The current `index.html` still ships the pre-lock plum/Cormorant export — rebuild to this lock is pending; real photography required before styling.)*
+*(Superseded the earlier terracotta "Sunbaked Clay" lock after the client rejected orange.)*
 
 ## Local preview
 

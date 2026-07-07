@@ -19,18 +19,22 @@
 - Signature moment: scrolling into the portfolio, the ground scrubs cream → umber, a warm
   light-leak blooms, grain resolves, and the photographs ignite on the dark.
 
-## Style Lock — "Sunbaked Clay, dark-first" (locked 2026-07-06 · exactly 3 hexes)
-- Lens & Lu's OWN identity — NOT chuck design house style (no Outfit, no coral `#E05C3A`, no
-  Pixel mark). **Fraunces banned. Cormorant retired.**
-- **Ground** `#2E2118` umber (dark-first) · **Text** `#F4EDE1` cream · **Accent** `#C8613C`
-  terracotta. The light rendering (cream ground / umber text) is the SAME three hexes
-  inverted — used for breathing-room / contrast sections only.
-- **Accent rule:** terracotta is for ACTION and large display ONLY (~3:1 on umber) — never
-  body copy. Body is always cream-on-umber (or umber-on-cream) — both safe.
-- Supporting neutrals (NOT part of the 3-lock; use sparingly): sage `#8A9A7B`, sand `#E0D3BE`.
-- Type: **Instrument Serif** (display, incl. italic) + **Hanken Grotesk** (body). Two fonts
-  only. (A bold Hanken-900 all-caps hero was tried 2026-07-06 and reverted — too hard-edged
-  for the soulful boho archetype.)
+## Style Lock — moody palette (client pivot 2026-07-06 · supersedes "Sunbaked Clay")
+- Client (Dana) rejected orange — a hard pivot away from terracotta. Lens & Lu's OWN
+  identity, NOT chuck design house style. **Fraunces banned. Cormorant retired. No orange.**
+- **Grounds (dark):** olive `#3A3A2A` (main — hero, sessions, gallery, footer) · plum
+  `#322A3A` (contact) · slate `#2A323A` (scroll-nav, modal). All three are near-equal-value
+  darks — they set the mood; they cannot carry text or a high-contrast accent on their own.
+- **Text:** cream `#F4EDE1`. **Light "breathing" sections** (About, Process) invert to a
+  cream ground with olive `#3A3A2A` text.
+- **Accent:** lavender `#C3B4D6` — eyebrows, italic accent words, stats, hover, the "— Dana"
+  pill. Same lavender on the cream sections (low-contrast by design; Charles eye-checked).
+- **Buttons:** cream-filled + olive text (no colored accent button). Scroll-nav = olive bar,
+  cream text/logo, cream book button.
+- Motion (drift · bloom · grain) glow cooled to a soft **lavender-white**, not gold.
+- Type: **Instrument Serif** (display, incl. italic) + **Hanken Grotesk** (body). Two fonts.
+- This is a **5-tone system** (3 dark grounds + cream + lavender), sanctioned by the client's
+  palette choice — no longer the exactly-3-hex lock.
 
 ## Project Context
 Single-page portfolio + booking site for Lens &amp; Lu, a family &amp; couples photographer
